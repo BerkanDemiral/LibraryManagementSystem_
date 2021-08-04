@@ -1,0 +1,21 @@
+﻿@model LibraryManagementSystem.Models.Entity.personnels
+@{
+    ViewBag.Title = "AddPersonnel";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Personel Ekle</h2>
+<form class="form-group" method="post">
+    <div>
+    </div>
+    <div style="margin-top:25px">
+        <label>Personel Adı</label>
+        @Html.TextBoxFor(prs => prs.personnel, new { @class="form-control"})
+        @Html.ValidationMessageFor(prs => prs.personnel,"", new {@style="color:red"})
+    </div>
+
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Ekle</button>
+    </div>
+</form>

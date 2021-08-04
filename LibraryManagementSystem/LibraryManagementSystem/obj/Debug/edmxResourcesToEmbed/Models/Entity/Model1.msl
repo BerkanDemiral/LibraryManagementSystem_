@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LIBRARYModelStoreContainer" CdmEntityContainer="DBLIBRARYEntities">
+    <EntitySetMapping Name="authors">
+      <EntityTypeMapping TypeName="LIBRARYModel.authors">
+        <MappingFragment StoreEntitySet="authors">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="detail" ColumnName="detail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="books">
+      <EntityTypeMapping TypeName="LIBRARYModel.books">
+        <MappingFragment StoreEntitySet="books">
+          <ScalarProperty Name="book_description" ColumnName="book_description" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="category_id" ColumnName="categorie_id" />
+          <ScalarProperty Name="author_id" ColumnName="author_id" />
+          <ScalarProperty Name="publication_year" ColumnName="publication_year" />
+          <ScalarProperty Name="publisher" ColumnName="publisher" />
+          <ScalarProperty Name="number_of_page" ColumnName="number_of_page" />
+          <ScalarProperty Name="situation" ColumnName="situation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cases">
+      <EntityTypeMapping TypeName="LIBRARYModel.cases">
+        <MappingFragment StoreEntitySet="cases">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="month" ColumnName="month" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="LIBRARYModel.categories">
+        <MappingFragment StoreEntitySet="categories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="events">
+      <EntityTypeMapping TypeName="LIBRARYModel.events">
+        <MappingFragment StoreEntitySet="events">
+          <ScalarProperty Name="member_return_date" ColumnName="member_return_date" />
+          <ScalarProperty Name="process_situation" ColumnName="process_situation" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="book_id" ColumnName="book_id" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="personnel_id" ColumnName="personnel_id" />
+          <ScalarProperty Name="get_date" ColumnName="get_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="members">
+      <EntityTypeMapping TypeName="LIBRARYModel.members">
+        <MappingFragment StoreEntitySet="members">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="photos" ColumnName="photos" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="school" ColumnName="school" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="personnels">
+      <EntityTypeMapping TypeName="LIBRARYModel.personnels">
+        <MappingFragment StoreEntitySet="personnels">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="personnel" ColumnName="personnel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="about_us">
+      <EntityTypeMapping TypeName="LIBRARYModel.about_us">
+        <MappingFragment StoreEntitySet="about_us">
+          <ScalarProperty Name="describe" ColumnName="describe" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contact">
+      <EntityTypeMapping TypeName="LIBRARYModel.contact">
+        <MappingFragment StoreEntitySet="contact">
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="topic" ColumnName="topic" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="penalties">
+      <EntityTypeMapping TypeName="LIBRARYModel.penalties">
+        <MappingFragment StoreEntitySet="penalties">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="member_id" ColumnName="member_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="WritedMaxBookAuthor" FunctionName="LIBRARYModel.Store.WritedMaxBookAuthor" />
+    <FunctionImportMapping FunctionImportName="bestBook" FunctionName="LIBRARYModel.Store.bestBook" />
+    <FunctionImportMapping FunctionImportName="bestMember" FunctionName="LIBRARYModel.Store.bestMember" />
+    <FunctionImportMapping FunctionImportName="bestPerconnel" FunctionName="LIBRARYModel.Store.bestPerconnel" />
+  </EntityContainerMapping>
+</Mapping>

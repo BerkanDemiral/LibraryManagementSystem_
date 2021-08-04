@@ -1,0 +1,65 @@
+﻿@model LibraryManagementSystem.Models.Entity.members
+@{
+    ViewBag.Title = "AddMember";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Üye Ekle</h2>
+<form class="form-group" method="post">
+    <div>
+    </div>
+    <div style="margin-top:25px">
+        <label>Üye Adı</label>
+        @Html.TextBoxFor(member => member.first_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.first_name, "", new { @style = "color:red" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Üye Soyadı</label>
+        @Html.TextBoxFor(member => member.last_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.last_name, "", new { @style = "color:red" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Email</label>
+        @Html.TextBoxFor(member => member.email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.email, "", new { @style = "color:red" })
+    </div>
+
+
+    <div style="margin-top:25px">
+        <label>Kullanıcı Adı</label>
+        @Html.TextBoxFor(member => member.user_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.user_name, "", new { @style = "color:red" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Password</label>
+        @Html.TextBoxFor(member => member.password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.password, "", new { @style = "color:red" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Fotoğraf</label>
+        @Html.TextBoxFor(member => member.photos, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.photos, "", new { @style = "color:red" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Telefon Numarası</label>
+        @Html.TextBoxFor(member => member.phone_number, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.phone_number, "", new { @style = "color:red" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Okul</label>
+        @Html.TextBoxFor(member => member.school, new { @class = "form-control" })
+        @Html.ValidationMessageFor(member => member.school, "", new { @style = "color:red" })
+    </div>
+
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Ekle</button>
+    </div>
+</form>
+

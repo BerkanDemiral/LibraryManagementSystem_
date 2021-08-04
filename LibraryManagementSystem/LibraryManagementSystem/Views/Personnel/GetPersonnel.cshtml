@@ -1,0 +1,26 @@
+﻿@model LibraryManagementSystem.Models.Entity.personnels
+@{
+    ViewBag.Title = "GetPersonnel";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Güncelle</h2>
+
+@using (Html.BeginForm("UpdatePersonnel", "Personnel", FormMethod.Post))
+{
+    <div style="margin-bottom:25px"></div>
+    <div class="form-group">
+        <label>ID</label>
+        @Html.TextBoxFor(personnel => personnel.id, new { @class = "form-control" })
+
+        <br />
+
+        <label>Personel Ad Soyad</label>
+        @Html.TextBoxFor(personnel => personnel.personnel, new { @class = "form-control" })
+        <br />
+    </div>
+
+    <div>
+        <button class="btn btn-warning">Güncelle</button>
+    </div>
+}

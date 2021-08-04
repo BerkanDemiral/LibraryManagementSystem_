@@ -1,0 +1,82 @@
+﻿
+@{
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 10px 14px 10px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #ff6a00;
+}
+
+.main {
+  margin-left: 240px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+@@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="/ShowCase/Index/"><i class="glyphicon glyphicon-home"></i> &nbsp; Ana Sayfa </a> @*başında 1 boşluk olması için &nbsp; kullandık*@
+        <a href="/Category/Index/"><i class="glyphicon glyphicon-list"></i> &nbsp; Kategoriler</a>
+        <a href="/Book/Index/"><i class="glyphicon glyphicon-book"></i> &nbsp; Kitaplar</a>
+        <a href="/Author/Index/"><i class="glyphicon glyphicon-pencil"></i> &nbsp; Yazarlar</a>
+        <a href="/Member/Index/"><i class="glyphicon glyphicon-user"></i> &nbsp; Üyeler</a>
+        <a href="/Personnel/Index/"><i class="glyphicon glyphicon-briefcase"></i> &nbsp; Personeller</a>
+        <a href="/Loaned/Lend/"><i class="glyphicon glyphicon-arrow-right"></i> &nbsp; Ödünç Kitap Ver</a>
+        <a href="/Loaned/Index/"><i class="glyphicon glyphicon-arrow-left"></i> &nbsp; Ödünç Kitap Al</a>
+        <a href="/Statistics/Index/"><i class="glyphicon glyphicon-stats"></i> &nbsp; İstatistikler</a>
+        <a href="/Operation/Index/"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; İşlemler</a>
+        <a href="/Statistics/LinqCart/"><i class="glyphicon glyphicon-scale"></i> &nbsp; Kartlar</a>
+        <a href="/Statistics/Weather/"><i class="glyphicon glyphicon-cloud"></i> &nbsp; Hava Raporu</a>
+        <a href="/Statistics/WeatherCart/"><i class="glyphicon glyphicon-cloud-upload"></i> &nbsp; Hava Kartları</a>
+        <a href="/ShowCase/Index/"><i class="glyphicon glyphicon-gift"></i> &nbsp; Vitrin</a>
+        <a href="#"><i class="glyphicon glyphicon-cog"></i> &nbsp; Ayarlar</a>
+        <a href="#"><i class="glyphicon glyphicon-remove-sign"></i> &nbsp; Çıkış Yap</a>
+
+
+
+
+
+    </div>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

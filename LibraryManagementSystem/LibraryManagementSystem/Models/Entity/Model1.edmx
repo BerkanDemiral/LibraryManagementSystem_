@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LIBRARYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="about_us">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="describe" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="authors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="detail" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="70" />
+          <Property Name="categorie_id" Type="int" />
+          <Property Name="author_id" Type="int" />
+          <Property Name="publication_year" Type="char" MaxLength="4" />
+          <Property Name="publisher" Type="varchar" MaxLength="50" />
+          <Property Name="number_of_page" Type="varchar" MaxLength="5" />
+          <Property Name="situation" Type="bit" />
+          <Property Name="image" Type="varchar" MaxLength="300" />
+          <Property Name="book_description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="cases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="month" Type="varchar" MaxLength="20" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="topic" Type="varchar" MaxLength="50" />
+          <Property Name="message" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="book_id" Type="int" />
+          <Property Name="member_id" Type="int" />
+          <Property Name="personnel_id" Type="int" />
+          <Property Name="get_date" Type="smalldatetime" />
+          <Property Name="return_date" Type="smalldatetime" />
+          <Property Name="member_return_date" Type="smalldatetime" />
+          <Property Name="process_situation" Type="bit" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="photos" Type="varchar" MaxLength="250" />
+          <Property Name="phone_number" Type="varchar" MaxLength="20" />
+          <Property Name="school" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="penalties">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member_id" Type="int" />
+          <Property Name="event_id" Type="int" />
+          <Property Name="create_date" Type="smalldatetime" />
+          <Property Name="end_date" Type="smalldatetime" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="personnels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personnel" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_books_authors">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_books_categories">
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="categorie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_books">
+          <End Role="books" Type="Self.books" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_members">
+          <End Role="members" Type="Self.members" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_personnels">
+          <End Role="personnels" Type="Self.personnels" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="personnel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_penalties_events">
+          <End Role="events" Type="Self.events" Multiplicity="0..1" />
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_penalties_members">
+          <End Role="members" Type="Self.members" Multiplicity="0..1" />
+          <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="bestBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="bestMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="bestPerconnel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="WritedMaxBookAuthor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="LIBRARYModelStoreContainer">
+          <EntitySet Name="about_us" EntityType="Self.about_us" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cases" EntityType="Self.cases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="penalties" EntityType="Self.penalties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personnels" EntityType="Self.personnels" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_books_authors" Association="Self.FK_books_authors">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_books_categories" Association="Self.FK_books_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_books" Association="Self.FK_events_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_members" Association="Self.FK_events_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_personnels" Association="Self.FK_events_personnels">
+            <End Role="personnels" EntitySet="personnels" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_penalties_events" Association="Self.FK_penalties_events">
+            <End Role="events" EntitySet="events" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_penalties_members" Association="Self.FK_penalties_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LIBRARYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="authors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="books" Relationship="Self.FK_books_authors" FromRole="authors" ToRole="books" />
+        </EntityType>
+        <EntityType Name="books">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="category_id" Type="Int32" />
+          <Property Name="author_id" Type="Int32" />
+          <Property Name="publication_year" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="number_of_page" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="situation" Type="Boolean" />
+          <NavigationProperty Name="authors" Relationship="Self.FK_books_authors" FromRole="books" ToRole="authors" />
+          <NavigationProperty Name="categories" Relationship="Self.FK_books_categories" FromRole="books" ToRole="categories" />
+          <NavigationProperty Name="events" Relationship="Self.FK_events_books" FromRole="books" ToRole="events" />
+          <Property Name="image" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="book_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cases">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="month" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="books" Relationship="Self.FK_books_categories" FromRole="categories" ToRole="books" />
+        </EntityType>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="book_id" Type="Int32" />
+          <Property Name="member_id" Type="Int32" />
+          <Property Name="personnel_id" Type="Int32" />
+          <Property Name="get_date" Type="DateTime" Precision="0" />
+          <Property Name="return_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="books" Relationship="Self.FK_events_books" FromRole="events" ToRole="books" />
+          <NavigationProperty Name="members" Relationship="Self.FK_events_members" FromRole="events" ToRole="members" />
+          <NavigationProperty Name="personnels" Relationship="Self.FK_events_personnels" FromRole="events" ToRole="personnels" />
+          <Property Name="process_situation" Type="Boolean" />
+          <Property Name="member_return_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="penalties" Relationship="LIBRARYModel.FK_penalties_events" FromRole="events" ToRole="penalties" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="photos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="school" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="events" Relationship="Self.FK_events_members" FromRole="members" ToRole="events" />
+          <NavigationProperty Name="penalties" Relationship="LIBRARYModel.FK_penalties_members" FromRole="members" ToRole="penalties" />
+        </EntityType>
+        <EntityType Name="personnels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personnel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="events" Relationship="Self.FK_events_personnels" FromRole="personnels" ToRole="events" />
+        </EntityType>
+        <Association Name="FK_books_authors">
+          <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="authors">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="author_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_books_categories">
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+          <End Role="books" Type="Self.books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="books">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_books">
+          <End Role="books" Type="Self.books" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_members">
+          <End Role="members" Type="Self.members" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_events_personnels">
+          <End Role="personnels" Type="Self.personnels" Multiplicity="0..1" />
+          <End Role="events" Type="Self.events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="events">
+              <PropertyRef Name="personnel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBLIBRARYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="authors" EntityType="Self.authors" />
+          <EntitySet Name="books" EntityType="Self.books" />
+          <EntitySet Name="cases" EntityType="Self.cases" />
+          <EntitySet Name="categories" EntityType="Self.categories" />
+          <EntitySet Name="events" EntityType="Self.events" />
+          <EntitySet Name="members" EntityType="Self.members" />
+          <EntitySet Name="personnels" EntityType="Self.personnels" />
+          <AssociationSet Name="FK_books_authors" Association="Self.FK_books_authors">
+            <End Role="authors" EntitySet="authors" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_books_categories" Association="Self.FK_books_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="books" EntitySet="books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_books" Association="Self.FK_events_books">
+            <End Role="books" EntitySet="books" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_members" Association="Self.FK_events_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_events_personnels" Association="Self.FK_events_personnels">
+            <End Role="personnels" EntitySet="personnels" />
+            <End Role="events" EntitySet="events" />
+          </AssociationSet>
+          <EntitySet Name="about_us" EntityType="LIBRARYModel.about_us" />
+          <EntitySet Name="contact" EntityType="LIBRARYModel.contact" />
+          <EntitySet Name="penalties" EntityType="LIBRARYModel.penalties" />
+          <AssociationSet Name="FK_penalties_events" Association="LIBRARYModel.FK_penalties_events">
+            <End Role="events" EntitySet="events" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_penalties_members" Association="LIBRARYModel.FK_penalties_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="penalties" EntitySet="penalties" />
+          </AssociationSet>
+          <FunctionImport Name="WritedMaxBookAuthor" ReturnType="Collection(String)" />
+          <FunctionImport Name="bestBook" ReturnType="Collection(String)" />
+          <FunctionImport Name="bestMember" ReturnType="Collection(String)" />
+          <FunctionImport Name="bestPerconnel" ReturnType="Collection(String)" />
+        </EntityContainer>
+        <EntityType Name="about_us">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="message" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="penalties">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="member_id" Type="Int32" />
+          <Property Name="event_id" Type="Int32" />
+          <Property Name="create_date" Type="DateTime" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="events" Relationship="LIBRARYModel.FK_penalties_events" FromRole="penalties" ToRole="events" />
+          <NavigationProperty Name="members" Relationship="LIBRARYModel.FK_penalties_members" FromRole="penalties" ToRole="members" />
+        </EntityType>
+        <Association Name="FK_penalties_events">
+          <End Type="LIBRARYModel.events" Role="events" Multiplicity="0..1" />
+          <End Type="LIBRARYModel.penalties" Role="penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="events">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_penalties_members">
+          <End Type="LIBRARYModel.members" Role="members" Multiplicity="0..1" />
+          <End Type="LIBRARYModel.penalties" Role="penalties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="penalties">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LIBRARYModelStoreContainer" CdmEntityContainer="DBLIBRARYEntities">
+          <EntitySetMapping Name="authors">
+            <EntityTypeMapping TypeName="LIBRARYModel.authors">
+              <MappingFragment StoreEntitySet="authors">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="LIBRARYModel.books">
+              <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="book_description" ColumnName="book_description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="category_id" ColumnName="categorie_id" />
+                <ScalarProperty Name="author_id" ColumnName="author_id" />
+                <ScalarProperty Name="publication_year" ColumnName="publication_year" />
+                <ScalarProperty Name="publisher" ColumnName="publisher" />
+                <ScalarProperty Name="number_of_page" ColumnName="number_of_page" />
+                <ScalarProperty Name="situation" ColumnName="situation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cases">
+            <EntityTypeMapping TypeName="LIBRARYModel.cases">
+              <MappingFragment StoreEntitySet="cases">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="LIBRARYModel.categories">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="events">
+            <EntityTypeMapping TypeName="LIBRARYModel.events">
+              <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="member_return_date" ColumnName="member_return_date" />
+                <ScalarProperty Name="process_situation" ColumnName="process_situation" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="book_id" ColumnName="book_id" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="personnel_id" ColumnName="personnel_id" />
+                <ScalarProperty Name="get_date" ColumnName="get_date" />
+                <ScalarProperty Name="return_date" ColumnName="return_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="members">
+            <EntityTypeMapping TypeName="LIBRARYModel.members">
+              <MappingFragment StoreEntitySet="members">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="photos" ColumnName="photos" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="school" ColumnName="school" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personnels">
+            <EntityTypeMapping TypeName="LIBRARYModel.personnels">
+              <MappingFragment StoreEntitySet="personnels">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="personnel" ColumnName="personnel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="about_us">
+            <EntityTypeMapping TypeName="LIBRARYModel.about_us">
+              <MappingFragment StoreEntitySet="about_us">
+                <ScalarProperty Name="describe" ColumnName="describe" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contact">
+            <EntityTypeMapping TypeName="LIBRARYModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="topic" ColumnName="topic" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="penalties">
+            <EntityTypeMapping TypeName="LIBRARYModel.penalties">
+              <MappingFragment StoreEntitySet="penalties">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="WritedMaxBookAuthor" FunctionName="LIBRARYModel.Store.WritedMaxBookAuthor" />
+          <FunctionImportMapping FunctionImportName="bestBook" FunctionName="LIBRARYModel.Store.bestBook" />
+          <FunctionImportMapping FunctionImportName="bestMember" FunctionName="LIBRARYModel.Store.bestMember" />
+          <FunctionImportMapping FunctionImportName="bestPerconnel" FunctionName="LIBRARYModel.Store.bestPerconnel" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ebd5d8082d943bd979a44423fce5498" Name="Diagram1">
+        <EntityTypeShape EntityType="LIBRARYModel.authors" Width="1.5" PointX="0.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIBRARYModel.books" Width="1.5" PointX="5.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIBRARYModel.cases" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIBRARYModel.categories" Width="1.5" PointX="2.625" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIBRARYModel.events" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIBRARYModel.members" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LIBRARYModel.personnels" Width="1.5" PointX="8" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="LIBRARYModel.FK_books_authors" ManuallyRouted="false" />
+        <AssociationConnector Association="LIBRARYModel.FK_books_categories" ManuallyRouted="false" />
+        <AssociationConnector Association="LIBRARYModel.FK_events_books" ManuallyRouted="false" />
+        <AssociationConnector Association="LIBRARYModel.FK_events_members" ManuallyRouted="false" />
+        <AssociationConnector Association="LIBRARYModel.FK_events_personnels" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LIBRARYModel.about_us" Width="1.5" PointX="9.625" PointY="3.25" />
+        <EntityTypeShape EntityType="LIBRARYModel.contact" Width="1.5" PointX="10.25" PointY="5.5" />
+        <EntityTypeShape EntityType="LIBRARYModel.penalties" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="LIBRARYModel.FK_penalties_events" />
+        <AssociationConnector Association="LIBRARYModel.FK_penalties_members" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,42 @@
+﻿@model LibraryManagementSystem.Models.Entity.events
+@{
+    ViewBag.Title = "Lend";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Ödünç Verme İşlemi</h2>
+
+<form class="form-group" method="post">
+    <div>
+    </div>
+    <div style="margin-top:25px">
+        <label>Kitap</label>
+        @Html.DropDownListFor(evnt => evnt.books.id,(List<SelectListItem>)ViewBag.value1,
+       new { @class ="form-control"})
+    </div>
+    <div style="margin-top:25px">
+        <label>Üye</label>
+        @Html.DropDownListFor(evnt => evnt.members.id,(List<SelectListItem>)ViewBag.value2,
+       new { @class ="form-control"})
+    </div>
+    <div style="margin-top:25px">
+        <label>Personel</label>
+        @Html.DropDownListFor(evnt => evnt.personnels.id,(List<SelectListItem>)ViewBag.value3,
+       new { @class ="form-control"})
+    </div>
+    <div style="margin-top:25px">
+        <label>Kitap Alış Tarihi</label>
+        <input type="text" class="form-control" name="get_date" value="@DateTime.Now.ToShortDateString()"/>
+    </div>
+    <div style="margin-top:25px">
+        <label>Kitap İade Tarihi</label>
+        <input type="text" class="form-control" name="return_date" value="@DateTime.Now.AddDays(7).ToShortDateString()" />
+
+
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-primary">Ödünç Ver</button>
+    </div>
+</form>
+

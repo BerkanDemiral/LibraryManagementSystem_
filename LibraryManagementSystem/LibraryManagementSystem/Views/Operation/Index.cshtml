@@ -1,0 +1,38 @@
+﻿@using LibraryManagementSystem.Models.Entity;
+@model List<events>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>İadesi Alınan Kitap Listesi</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Kitap Adı</th>
+        <th>Üye</th>
+        <th>Personel</th>
+        <th>Alış Tarihi</th>
+        <th>Üyenin Teslim Tarihi</th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var evnt in Model)
+    {
+        <tr>
+            <td>@evnt.id</td>
+            <td>@evnt.books.name</td>
+            <td>@evnt.members.first_name @evnt.members.last_name</td>
+            <td>@evnt.personnels.personnel</td>
+            <td>@Convert.ToDateTime(evnt.get_date).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(evnt.member_return_date).ToString("dd/MM/yyyy")</td>
+
+            <td><a href="/Loaned/ReturnBook/@evnt.id" class="btn btn-default" style="background-color:orange; color:white;">Detaylar</a></td>
+
+
+        </tr>
+    }
+
+</table>

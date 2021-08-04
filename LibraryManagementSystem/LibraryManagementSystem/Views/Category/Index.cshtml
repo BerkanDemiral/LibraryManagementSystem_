@@ -1,0 +1,34 @@
+﻿@using LibraryManagementSystem.Models.Entity
+@model List<categories>
+@*hangi verileri listeleyeceksek onu model olarka tanımlıyoruz.*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Kategoriler</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Kategori Adı</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@category.id</td>
+            <td>@category.name</td>
+            <td>
+                @Html.ActionLink("Sil", "DeleteCategory", new { id = category.id }, new { @class="btn btn-danger",
+               onclick="return confirm('Silmek istiyor musunuz?')"})
+            </td>
+            <td><a href="/Category/GetCategory/@category.id" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+
+</table>
+
+<a href="/Category/AddCategory/" class="btn btn-primary">Yeni Kategori Ekle</a>
