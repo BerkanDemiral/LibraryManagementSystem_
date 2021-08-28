@@ -1,5 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LIBRARYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="about_us">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="announcements">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="content" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+  </EntityType>
   <EntityType Name="authors">
     <Key>
       <PropertyRef Name="id" />
@@ -16,17 +32,17 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-    <Property Name="category_id" Type="Int32" />
+    <Property Name="categorie_id" Type="Int32" />
     <Property Name="author_id" Type="Int32" />
     <Property Name="publication_year" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
     <Property Name="publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="number_of_page" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="situation" Type="Boolean" />
+    <Property Name="image" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="book_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="authors" Relationship="Self.FK_books_authors" FromRole="books" ToRole="authors" />
     <NavigationProperty Name="categories" Relationship="Self.FK_books_categories" FromRole="books" ToRole="categories" />
     <NavigationProperty Name="events" Relationship="Self.FK_events_books" FromRole="books" ToRole="events" />
-    <Property Name="image" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="book_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="cases">
     <Key>
@@ -42,7 +58,18 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="situation" Type="Boolean" />
     <NavigationProperty Name="books" Relationship="Self.FK_books_categories" FromRole="categories" ToRole="books" />
+  </EntityType>
+  <EntityType Name="contact">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="message" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="events">
     <Key>
@@ -54,12 +81,12 @@
     <Property Name="personnel_id" Type="Int32" />
     <Property Name="get_date" Type="DateTime" Precision="0" />
     <Property Name="return_date" Type="DateTime" Precision="0" />
+    <Property Name="member_return_date" Type="DateTime" Precision="0" />
+    <Property Name="process_situation" Type="Boolean" />
     <NavigationProperty Name="books" Relationship="Self.FK_events_books" FromRole="events" ToRole="books" />
     <NavigationProperty Name="members" Relationship="Self.FK_events_members" FromRole="events" ToRole="members" />
     <NavigationProperty Name="personnels" Relationship="Self.FK_events_personnels" FromRole="events" ToRole="personnels" />
-    <Property Name="process_situation" Type="Boolean" />
-    <Property Name="member_return_date" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="penalties" Relationship="LIBRARYModel.FK_penalties_events" FromRole="events" ToRole="penalties" />
+    <NavigationProperty Name="penalties" Relationship="Self.FK_penalties_events" FromRole="events" ToRole="penalties" />
   </EntityType>
   <EntityType Name="members">
     <Key>
@@ -75,7 +102,32 @@
     <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="school" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="events" Relationship="Self.FK_events_members" FromRole="members" ToRole="events" />
-    <NavigationProperty Name="penalties" Relationship="LIBRARYModel.FK_penalties_members" FromRole="members" ToRole="penalties" />
+    <NavigationProperty Name="penalties" Relationship="Self.FK_penalties_members" FromRole="members" ToRole="penalties" />
+    <Property Name="role" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="messages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="to_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="penalties">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="member_id" Type="Int32" />
+    <Property Name="event_id" Type="Int32" />
+    <Property Name="create_date" Type="DateTime" Precision="0" />
+    <Property Name="end_date" Type="DateTime" Precision="0" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="events" Relationship="Self.FK_penalties_events" FromRole="penalties" ToRole="events" />
+    <NavigationProperty Name="members" Relationship="Self.FK_penalties_members" FromRole="penalties" ToRole="members" />
   </EntityType>
   <EntityType Name="personnels">
     <Key>
@@ -105,7 +157,7 @@
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="books">
-        <PropertyRef Name="category_id" />
+        <PropertyRef Name="categorie_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -145,13 +197,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DBLIBRARYEntities" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK_penalties_events">
+    <End Role="events" Type="Self.events" Multiplicity="0..1" />
+    <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="events">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="penalties">
+        <PropertyRef Name="event_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_penalties_members">
+    <End Role="members" Type="Self.members" Multiplicity="0..1" />
+    <End Role="penalties" Type="Self.penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="members">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="penalties">
+        <PropertyRef Name="member_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LIBRARYEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="about_us" EntityType="Self.about_us" />
+    <EntitySet Name="announcements" EntityType="Self.announcements" />
     <EntitySet Name="authors" EntityType="Self.authors" />
     <EntitySet Name="books" EntityType="Self.books" />
     <EntitySet Name="cases" EntityType="Self.cases" />
     <EntitySet Name="categories" EntityType="Self.categories" />
+    <EntitySet Name="contact" EntityType="Self.contact" />
     <EntitySet Name="events" EntityType="Self.events" />
     <EntitySet Name="members" EntityType="Self.members" />
+    <EntitySet Name="messages" EntityType="Self.messages" />
+    <EntitySet Name="penalties" EntityType="Self.penalties" />
     <EntitySet Name="personnels" EntityType="Self.personnels" />
     <AssociationSet Name="FK_books_authors" Association="Self.FK_books_authors">
       <End Role="authors" EntitySet="authors" />
@@ -173,74 +254,58 @@
       <End Role="personnels" EntitySet="personnels" />
       <End Role="events" EntitySet="events" />
     </AssociationSet>
-    <EntitySet Name="about_us" EntityType="LIBRARYModel.about_us" />
-    <EntitySet Name="contact" EntityType="LIBRARYModel.contact" />
-    <EntitySet Name="penalties" EntityType="LIBRARYModel.penalties" />
-    <AssociationSet Name="FK_penalties_events" Association="LIBRARYModel.FK_penalties_events">
+    <AssociationSet Name="FK_penalties_events" Association="Self.FK_penalties_events">
       <End Role="events" EntitySet="events" />
       <End Role="penalties" EntitySet="penalties" />
     </AssociationSet>
-    <AssociationSet Name="FK_penalties_members" Association="LIBRARYModel.FK_penalties_members">
+    <AssociationSet Name="FK_penalties_members" Association="Self.FK_penalties_members">
       <End Role="members" EntitySet="members" />
       <End Role="penalties" EntitySet="penalties" />
     </AssociationSet>
-    <FunctionImport Name="WritedMaxBookAuthor" ReturnType="Collection(String)" />
     <FunctionImport Name="bestBook" ReturnType="Collection(String)" />
     <FunctionImport Name="bestMember" ReturnType="Collection(String)" />
     <FunctionImport Name="bestPerconnel" ReturnType="Collection(String)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(LIBRARYModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(LIBRARYModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="WritedMaxBookAuthor" ReturnType="Collection(String)" />
   </EntityContainer>
-  <EntityType Name="about_us">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="contact">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="topic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="message" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="penalties">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="member_id" Type="Int32" />
-    <Property Name="event_id" Type="Int32" />
-    <Property Name="create_date" Type="DateTime" Precision="0" />
-    <Property Name="end_date" Type="DateTime" Precision="0" />
-    <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
-    <NavigationProperty Name="events" Relationship="LIBRARYModel.FK_penalties_events" FromRole="penalties" ToRole="events" />
-    <NavigationProperty Name="members" Relationship="LIBRARYModel.FK_penalties_members" FromRole="penalties" ToRole="members" />
-  </EntityType>
-  <Association Name="FK_penalties_events">
-    <End Type="LIBRARYModel.events" Role="events" Multiplicity="0..1" />
-    <End Type="LIBRARYModel.penalties" Role="penalties" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="events">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="penalties">
-        <PropertyRef Name="event_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_penalties_members">
-    <End Type="LIBRARYModel.members" Role="members" Multiplicity="0..1" />
-    <End Type="LIBRARYModel.penalties" Role="penalties" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="members">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="penalties">
-        <PropertyRef Name="member_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

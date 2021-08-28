@@ -22,7 +22,7 @@ namespace LibraryManagementSystem.Models.Entity
     
         public int id { get; set; }
         public string name { get; set; }
-        public Nullable<int> category_id { get; set; }
+        public Nullable<int> categorie_id { get; set; }
         public Nullable<int> author_id { get; set; }
         public string publication_year { get; set; }
         public string publisher { get; set; }

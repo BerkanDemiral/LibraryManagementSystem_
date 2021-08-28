@@ -30,6 +30,7 @@ namespace LibraryManagementSystem.Models.Entity
         public string photos { get; set; }
         public string phone_number { get; set; }
         public string school { get; set; }
+        public Nullable<bool> role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<events> events { get; set; }

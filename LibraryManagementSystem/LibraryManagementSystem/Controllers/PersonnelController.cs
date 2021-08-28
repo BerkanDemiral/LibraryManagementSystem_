@@ -10,7 +10,7 @@ namespace LibraryManagementSystem.Controllers
     public class PersonnelController : Controller
     {
         // GET: Personnel
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
             var values = db.personnels.ToList();

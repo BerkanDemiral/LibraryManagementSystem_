@@ -1,0 +1,42 @@
+﻿@using LibraryManagementSystem.Models.Entity
+@model List<events>
+@{
+    ViewBag.Title = "MemberDetail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@{ string status = "";}
+
+<h2>@ViewBag.name</h2>
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Kitap Adı</th>
+        <th>Kitabı Veren Personel</th>
+        <th>Alış Tarihi</th>
+        <th>Üyenin Teslim Tarihi</th>
+        <th></th>
+
+    </tr>
+
+    @foreach (var evnt in Model)
+    {
+        if(@evnt.member_return_date == null)
+        {
+            status = "Teslim Edilmedi";
+        }
+        else
+        {
+            status = @Convert.ToDateTime(evnt.member_return_date).ToString("dd/MM/yyyy");
+        }
+
+        <tr>
+            <td>@evnt.books.name</td>
+            <td>@evnt.personnels.personnel</td>
+            <td>@Convert.ToDateTime(evnt.get_date).ToString("dd/MM/yyyy")</td>
+            <td>@status</td>
+        </tr>
+    }
+
+</table>

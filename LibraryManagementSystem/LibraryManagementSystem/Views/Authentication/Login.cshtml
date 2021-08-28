@@ -45,30 +45,29 @@
                 <span class="login100-form-title p-b-41">
                     Kullanıcı Girişi
                 </span>
-                @using (Html.BeginForm("Login", "Authentication", FormMethod.Post))
-                {
-                    
+                <form method="post">
 
-                        <div class="wrap-input100 validate-input" data-validate="Enter email">
-                            <input class="input100" type="email" name="email" placeholder="Email" required="">
-                            <span class="focus-input100" data-placeholder="&#xe82a;"></span>
-                        </div>
 
-                        <div class="wrap-input100 validate-input" data-validate="Enter password">
-                            <input class="input100" type="password" name="password" placeholder="Parola" required="">
-                            <span class="focus-input100" data-placeholder="&#xe80f;"></span>
-                        </div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter email">
+                        <input class="input100" type="email" name="email" placeholder="Email" required="">
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
 
-                        <div class="container-login100-form-btn m-t-32">
-                            <button class="login100-form-btn">
-                                Giriş Yap
-                            </button>
-                        </div>
-                        <div class="container-login100-form-btn m-t-32">
-                            <p>Hesabınız yok mu? <a href="/Authentication/Register/"> Kayıt Ol </a></p>
-                        </div>
-                  
-                }
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input class="input100" type="password" name="password" placeholder="Parola" required="">
+                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-32">
+                        <button class="login100-form-btn">
+                            Giriş Yap
+                        </button>
+                    </div>
+                    <div class="container-login100-form-btn m-t-32">
+                        <p>Hesabınız yok mu? <a href="/Authentication/Register/"> Kayıt Ol </a></p>
+                    </div>
+
+                </form>
             </div>
         </div>
 

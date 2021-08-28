@@ -1,0 +1,30 @@
+﻿@model LibraryManagementSystem.Models.Entity.announcements
+@{
+    ViewBag.Title = "GetAnnouncement";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Duyuru Güncelle</h2>
+<br />
+@using (Html.BeginForm("UpdateAnnouncement", "Announcement", FormMethod.Post))
+{
+    <div style="margin-bottom:25px"></div>
+    <div class="form-group">
+        <label>ID</label>
+        @Html.TextBoxFor(x => x.id, new { @class = "form-control" })
+
+        <br />
+
+        <label>Kategori</label>
+        @Html.TextBoxFor(x => x.category, new { @class = "form-control" })
+        <br />
+
+        <label>Kategori</label>
+        @Html.TextAreaFor(x => x.content, new { @class = "form-control" })
+        <br />
+    </div>
+
+    <div>
+        <button class="btn btn-warning">Güncelle</button>
+    </div>
+}

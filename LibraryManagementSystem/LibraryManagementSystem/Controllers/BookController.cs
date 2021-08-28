@@ -10,7 +10,7 @@ namespace LibraryManagementSystem.Controllers
     public class BookController : Controller
     {
         // GET: Book
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index(string search)
         {
             var books = from book in db.books select book;
@@ -113,5 +113,7 @@ namespace LibraryManagementSystem.Controllers
 
             
         }
+
+
     }
 }

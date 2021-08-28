@@ -12,10 +12,10 @@ namespace LibraryManagementSystem.Controllers
     public class MemberController : Controller
     {
         // GET: Member
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index(int page=1)
         {
-            var values = db.members.ToList().ToPagedList(page,5);
+            var values = db.members.Where(x=>x.role ==false).ToList().ToPagedList(page,5);
             return View(values);
         }
 
@@ -65,6 +65,14 @@ namespace LibraryManagementSystem.Controllers
             memb.school = member.school;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult MemberDetail(int id)
+        {
+            var event_ = db.events.Where(x => x.member_id == id).ToList();
+            var nameMember = db.members.Where(y => y.id == id).Select(z => z.first_name + " " + z.last_name).FirstOrDefault();
+            ViewBag.name = nameMember;
+            return View(event_);
         }
     }
 }

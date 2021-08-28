@@ -10,7 +10,7 @@ namespace LibraryManagementSystem.Controllers
     public class ShowCaseController : Controller
     {
         // GET: ShowCase
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
 
         [HttpGet]
         public ActionResult Index()

@@ -11,7 +11,7 @@ namespace LibraryManagementSystem.Controllers
     {
         // GET: Author
 
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
             var values = db.authors.ToList();
@@ -60,5 +60,12 @@ namespace LibraryManagementSystem.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult AuthorDetail(int id)
+        {
+            var books = db.books.Where(x => x.author_id == id).ToList();
+            var nameAuthor = db.authors.Where(y => y.id == id).Select(z => z.first_name + " " + z.last_name).FirstOrDefault();
+            ViewBag.name = nameAuthor;
+            return View(books);
+        }
     }
 }

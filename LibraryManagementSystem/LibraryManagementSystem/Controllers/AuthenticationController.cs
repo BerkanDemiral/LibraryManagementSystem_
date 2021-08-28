@@ -10,7 +10,7 @@ namespace LibraryManagementSystem.Controllers
     public class AuthenticationController : Controller
     {
         // GET: Authentication
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
             return View();
@@ -26,11 +26,19 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult Login(members member)
         {
             var values = db.members.FirstOrDefault(m => m.email == member.email && m.password == member.password);
-            if(values != null)
+            if(values != null && values.role == false)
             {
                 FormsAuthentication.SetAuthCookie(values.email, false);
-                return RedirectToAction("/MemberPanel/Index/");
+                Session["email"] = values.email.ToString();
+                return RedirectToAction("Index","MemberPanel/Index");
             }
+            else if(values != null && values.role==true)
+            {
+                FormsAuthentication.SetAuthCookie(values.email, false);
+                Session["email"] = values.email.ToString();
+                return RedirectToAction("Index","Statistics/Index");
+            }
+
             else
             {
                 return View();
@@ -56,6 +64,13 @@ namespace LibraryManagementSystem.Controllers
             db.members.Add(member);
             db.SaveChanges();
             return RedirectToAction("Login");
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index", "Login/Index");
         }
     }
 }

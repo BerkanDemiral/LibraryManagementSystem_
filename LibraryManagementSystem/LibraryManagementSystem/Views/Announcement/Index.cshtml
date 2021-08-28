@@ -1,0 +1,38 @@
+﻿@using LibraryManagementSystem.Models.Entity
+@model List<announcements>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Duyurular</h2>
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Kategori</th>
+        <th>Tarih</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var i in Model)
+
+    {
+    <tr>
+        <td>@i.id</td>
+        <td>@i.category</td>
+        <td>@Convert.ToDateTime(i.date).ToShortDateString()</td>
+        <td>
+            @Html.ActionLink("Sil","DeleteAnnouncement", new { id = i.id }, new { @class="btn btn-danger",
+   onclick="return confirm('Silmek istiyor musunuz?')"})
+        </td>
+        <td><a href="/Announcement/GetAnnouncement/@i.id" class="btn btn-success">Detay</a></td>
+    </tr>
+    }
+
+</table>
+
+<a href="/Announcement/AddAnnouncement/" class="btn btn-primary">Yeni Duyuru Ekle</a>
+

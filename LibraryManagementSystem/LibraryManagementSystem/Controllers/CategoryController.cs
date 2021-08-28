@@ -11,7 +11,7 @@ namespace LibraryManagementSystem.Controllers
     {
         // GET: Category
 
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
             var values = db.categories.ToList(); // values ksımında tüm değerleri topluyoruz. 

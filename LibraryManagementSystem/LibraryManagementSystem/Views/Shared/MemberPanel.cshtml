@@ -21,15 +21,20 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
         <div class="border-end bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+            <div class="sidebar-heading border-bottom bg-light">Öğrenci Paneli</div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Anasayfa</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profilim</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Mesajlar</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Duyurular</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Kitaplarım</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/MemberPanel/Index/">Profilim</a>
 
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Yardım</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mesajlar</a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/Messages/Inbox/">Gelen Mesajlar</a>
+                    <a class="dropdown-item" href="/Messages/Outbox/">Giden Mesajlar</a>
+                </div>
+
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/MemberPanel/Announcement/">Duyurular</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/MemberPanel/MyBook/">Kitaplarım</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/ShowCase/Index/">Vitrin</a>
+
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -41,12 +46,11 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li class="nav-item active"><a class="nav-link" href="#!">Hakkımızda</a></li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ayarlar</a>
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#!">Profilim</a>
-                                    <a class="dropdown-item" href="#!">Çıkış Yap</a>
+                                    <a class="dropdown-item" href="/MemberPanel/Index/">Profilim</a>
+                                    <a class="dropdown-item" href="/Authentication/LogOut/">Çıkış Yap</a>
                                 </div>
                             </li>
                         </ul>
@@ -55,7 +59,7 @@
             </nav>
             <!-- Page content-->
             <div class="container-fluid">
-               @RenderBody()
+                @RenderBody()
             </div>
         </div>
     </div>

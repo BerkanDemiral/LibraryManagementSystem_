@@ -26,8 +26,8 @@ namespace LibraryManagementSystem.Models.Entity
         public Nullable<int> personnel_id { get; set; }
         public Nullable<System.DateTime> get_date { get; set; }
         public Nullable<System.DateTime> return_date { get; set; }
-        public Nullable<bool> process_situation { get; set; }
         public Nullable<System.DateTime> member_return_date { get; set; }
+        public Nullable<bool> process_situation { get; set; }
     
         public virtual books books { get; set; }
         public virtual members members { get; set; }

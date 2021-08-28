@@ -9,7 +9,7 @@ namespace LibraryManagementSystem.Controllers
     public class OperationController : Controller
     {
         // GET: Operation
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
             var values = db.events.Where(evnt => evnt.process_situation == true).ToList();

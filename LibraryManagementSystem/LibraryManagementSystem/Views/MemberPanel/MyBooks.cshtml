@@ -1,0 +1,25 @@
+﻿@using LibraryManagementSystem.Models.Entity
+@model List<events>
+@{
+    ViewBag.Title = "MyBooks";
+    Layout = "~/Views/Shared/MemberPanel.cshtml";
+}
+
+<h2>Kitap Hareketlerim</h2>
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Kitap Adı</th>
+        <th>Alış Tarihi</th>
+        <th>Üye İade Tarihi</th>
+    </tr>
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.books.name</td>
+            <td>@Convert.ToDateTime(b.get_date).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(b.member_return_date).ToString("dd/MM/yyyy")</td>
+        </tr>
+    }
+</table>

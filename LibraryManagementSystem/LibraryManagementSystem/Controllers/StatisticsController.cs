@@ -9,7 +9,7 @@ namespace LibraryManagementSystem.Controllers
     public class StatisticsController : Controller
     {
         // GET: Statistic
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         
         public ActionResult Index()
         {

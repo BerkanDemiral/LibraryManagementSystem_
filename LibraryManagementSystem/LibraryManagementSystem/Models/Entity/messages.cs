@@ -12,19 +12,13 @@ namespace LibraryManagementSystem.Models.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class categories
+    public partial class messages
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public categories()
-        {
-            this.books = new HashSet<books>();
-        }
-    
         public int id { get; set; }
-        public string name { get; set; }
-        public Nullable<bool> situation { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<books> books { get; set; }
+        public string sender { get; set; }
+        public string to_ { get; set; }
+        public string subject { get; set; }
+        public string message { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     }
 }

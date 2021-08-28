@@ -10,7 +10,7 @@ namespace LibraryManagementSystem.Controllers
     public class LoanedController : Controller
     {
         // GET: Loaned
-        DBLIBRARYEntities db = new DBLIBRARYEntities();
+        LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
             var values = db.events.Where(evnt => evnt.process_situation == false).ToList();
