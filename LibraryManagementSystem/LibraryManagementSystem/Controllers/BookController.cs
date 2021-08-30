@@ -11,14 +11,10 @@ namespace LibraryManagementSystem.Controllers
     {
         // GET: Book
         LIBRARYEntities1 db = new LIBRARYEntities1();
-        public ActionResult Index(string search)
+        public ActionResult Index()
         {
-            var books = from book in db.books select book;
-            if(!string.IsNullOrEmpty(search)) // aranan değer boş değilse şunu yap
-            {
-                books = books.Where(b => b.name.Contains(search));
-            }
-            return View(books.ToList());
+            var values = db.books.ToList();
+            return View(values);
         }
 
         [HttpGet]

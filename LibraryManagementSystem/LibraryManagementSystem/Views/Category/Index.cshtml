@@ -7,28 +7,51 @@
 }
 
 <h2>Kategoriler</h2>
+<br />
 
-<table class="table table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Kategori Adı</th>
-        <th></th>
-        <th></th>
-    </tr>
-
-    @foreach (var category in Model)
-    {
+<table id="tbl1" class="table table-bordered">
+    <thead>
         <tr>
-            <td>@category.id</td>
-            <td>@category.name</td>
-            <td>
-                @Html.ActionLink("Sil", "DeleteCategory", new { id = category.id }, new { @class="btn btn-danger",
-               onclick="return confirm('Silmek istiyor musunuz?')"})
-            </td>
-            <td><a href="/Category/GetCategory/@category.id" class="btn btn-success">Güncelle</a></td>
+            <th>ID</th>
+            <th>Kategori Adı</th>
+            <th></th>
+            <th></th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.id</td>
+                <td>@category.name</td>
+                <td>
+                    @Html.ActionLink("Sil", "DeleteCategory", new { id = category.id }, new { @class="btn btn-danger",
+                   onclick="return confirm('Silmek istiyor musunuz?')"})
+                </td>
+                <td><a href="/Category/GetCategory/@category.id" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
 
 </table>
 
 <a href="/Category/AddCategory/" class="btn btn-primary">Yeni Kategori Ekle</a>
+
+<script>
+    $('#tbl1').DataTable(
+        {
+            //order: [
+            //    [2, 'desc'] 2.indexteki sütunu büyükten küçüğe sıralı şekilde getirir.
+            //]
+            pageLength: 10,
+            //lengthMenu: [
+            //    [10, 25, 50, 100, -1],
+            //    ['10 Adet', '25 Adet', '50 Adet', '100 Adet', 'Tümü']
+            //],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Turkish.json"
+            }
+        });
+
+</script>

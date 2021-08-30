@@ -7,32 +7,51 @@
 
 <h2>Yazarlar</h2>
 
-<table class="table table-striped">
-    <tr style="background-color:#feae09">
-        <th>ID</th>
-        <th>Yazar Adı</th>
-        <th>Soyadı</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
-        <th>Detay</th>
-    </tr>
-
-    @foreach (var author in Model)
-    {
-        <tr>
-            <td>@author.id</td>
-            <td>@author.first_name</td>
-            <td>@author.last_name</td>
-            <td>
-                @Html.ActionLink("Sil","DeleteAuthor", new { id = author.id }, new { @class="btn btn-danger",
-       onclick="return confirm('Silmek istiyor musunuz?')"})
-        </td>
-        <td><a href="/Author/GetAuthor/@author.id" class="btn btn-success">Güncelle</a></td>
-        <td><a href="/Author/AuthorDetail/@author.id" class="btn btn-warning">Yazar Detayları</a></td>
-    </tr>
-}
+<table id="tbl1" class="table table-striped">
+    <thead>
+        <tr style="background-color:#feae09">
+            <th>ID</th>
+            <th>Yazar Adı</th>
+            <th>Soyadı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@author.id</td>
+                <td>@author.first_name</td>
+                <td>@author.last_name</td>
+                <td>
+                    @Html.ActionLink("Sil","DeleteAuthor", new { id = author.id }, new { @class="btn btn-danger",
+           onclick="return confirm('Silmek istiyor musunuz?')"})
+                </td>
+                <td><a href="/Author/GetAuthor/@author.id" class="btn btn-success">Güncelle</a></td>
+                <td><a href="/Author/AuthorDetail/@author.id" class="btn btn-warning">Yazar Detayları</a></td>
+            </tr>
+        }
+    </tbody>
 
 </table>
-
 <a href="/Author/AddAuthor/" class="btn btn-primary">Yazar Ekle</a>
 
+<script>
+    $('#tbl1').DataTable(
+        {
+            //order: [
+            //    [2, 'desc'] 2.indexteki sütunu büyükten küçüğe sıralı şekilde getirir.
+            //]
+            pageLength: 10,
+            //lengthMenu: [
+            //    [10, 25, 50, 100, -1],
+            //    ['10 Adet', '25 Adet', '50 Adet', '100 Adet', 'Tümü']
+            //],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Turkish.json"
+            }
+        } );
+   
+</script>
