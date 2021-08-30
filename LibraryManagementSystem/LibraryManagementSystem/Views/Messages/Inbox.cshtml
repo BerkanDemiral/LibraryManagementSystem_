@@ -1,0 +1,30 @@
+﻿@using LibraryManagementSystem.Models.Entity
+@model List<messages>
+@{
+    ViewBag.Title = "Inbox";
+    Layout = "~/Views/Shared/MemberPanel.cshtml";
+}
+
+<h2>Gelen Kutusu</h2>
+
+<br />
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Kimden</th>
+        <th>Konu</th>
+        <th>Mesaj</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.sender</td>
+            <td>@x.subject</td>
+            <td>@x.message</td>
+            <td>@Convert.ToDateTime(x.date).ToShortDateString()</td>
+        </tr>
+    }
+</table>
+

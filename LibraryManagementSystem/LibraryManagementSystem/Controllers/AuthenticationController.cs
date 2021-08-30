@@ -7,6 +7,7 @@ using LibraryManagementSystem.Models.Entity;
 using System.Web.Security; // otantike işlemleri için kullanacağımız kütüphanemiz
 namespace LibraryManagementSystem.Controllers
 {
+    [AllowAnonymous]
     public class AuthenticationController : Controller
     {
         // GET: Authentication
@@ -70,7 +71,7 @@ namespace LibraryManagementSystem.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Index", "Login/Index");
+            return RedirectToAction("Login", "Authentication/Login");
         }
     }
 }

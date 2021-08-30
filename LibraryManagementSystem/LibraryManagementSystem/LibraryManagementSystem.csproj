@@ -143,6 +143,7 @@
     <Compile Include="Controllers\LoanedController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MemberPanelController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\OperationController.cs" />
     <Compile Include="Controllers\PersonnelController.cs" />
     <Compile Include="Controllers\ShowCaseController.cs" />
@@ -653,6 +654,9 @@
     <Content Include="Views\Author\AuthorDetail.cshtml" />
     <Content Include="Views\MemberPanel\Announcement.cshtml" />
     <Content Include="Views\MemberPanel\MyBooks.cshtml" />
+    <Content Include="Views\Messages\Inbox.cshtml" />
+    <Content Include="Views\Messages\Outbox.cshtml" />
+    <Content Include="Views\Messages\NewMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
