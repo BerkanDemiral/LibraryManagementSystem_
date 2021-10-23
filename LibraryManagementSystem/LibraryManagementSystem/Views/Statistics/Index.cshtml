@@ -96,13 +96,10 @@
         <script>
 
             var barChartData = {
+                //labels: @ViewBag.valCategories
                 labels: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"],
                 datasets: [
-                    {
-                        fillColor: "rgba(255, 137, 167, 0.78)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        data: [65, 59, 90, 81, 56, 55, 40]
-                    },
+
                     {
                         fillColor: "rgba(140, 145, 255, 0.69)",
                         strokeColor: "rgba(151,187,205,1)",
@@ -116,35 +113,15 @@
 
         </script>
     </div>
-    <div class="to-do">
-        <div class="alert-close5"> </div>
-        <h3>Yapılacak Listesi</h3>
-        <div class="checkbox-form">
-            <div class="check">
-                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Yayınevini ara</label>
-            </div>
-            <div class="check">
-                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Emanet kitap kontrolü</label>
-            </div>
-            <div class="check">
-                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Kasayı kontrol et</label>
-            </div>
-            <div class="check">
-                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>En çok okuyan üyeye hediye <br />ver</label>
-            </div>
-        </div>
-    </div>
+   
     <div class="clearfix"></div>
 </div>
 
 <div class="total-world">
     <div class="world-map">
-        <div class="alert-close6"> </div>
-        <h3>Dünya Haritası</h3>
-        <p><span class="color1"></span>40%<span class="color2"></span>12%<span class="color3"></span>11%<span class="color4"></span>10%<span class="color5"></span>18%</p>
-        <div class="clearfix"></div>
-        <div id="vmap" style="width: 600px; height: 400px;"></div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d47934.30884987028!2d27.925027199600237!3d41.33291169278092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x14b528f6b24bbeed%3A0xbc34875359ef16a2!2zS2FwYWtsxLEgQmVsZWRpeWVzaSwgS2FwYWtsxLEvVGVraXJkYcSf!3m2!1d41.332916999999995!2d27.9600466!4m0!5e0!3m2!1str!2str!4v1634934939854!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
+</div>
     <div class="site-report">
         <div class="alert-close3"> </div>
         <h3>Kitap Raporları</h3>
@@ -172,7 +149,7 @@
                 <div class="skill2" style="width:89%"></div>
             </div>
         </div>
-        <p>Aylık raporlara göre, macera kitaplarının diğer tüm kitap türlerinden daha çok okunduğu gözlemlenmiştir.</p>
+        <p>Bu raporlarma, aylık verilen kitap kategorilerine göre yapılmıştır.</p>
     </div>
     <div class="clearfix"></div>
 </div>

@@ -13,7 +13,7 @@ namespace LibraryManagementSystem.Controllers
         LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
-            var values = db.books.ToList();
+            var values = db.books.Where(x => x.book_status == true).ToList();
             return View(values);
         }
 
@@ -48,6 +48,7 @@ namespace LibraryManagementSystem.Controllers
 
             book.categories = category;
             book.authors = author;
+            book.situation = true;
 
             db.books.Add(book);
             db.SaveChanges();
@@ -58,9 +59,10 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult DeleteBook(int id)
         {
             var book = db.books.Find(id); // id değerine göre o kategoriyi bul
-            db.books.Remove(book); // bulduğu kategoriyi sil
+            book.book_status = false;
+            // db.books.Remove(book); // bulduğu kategoriyi sil
             db.SaveChanges();
-            return RedirectToAction("Index"); // kategorilerin listelendiği aksiyona yönlendirmesini söyledik. 
+            return RedirectToAction("Index"); // kategorilerin listelendiği aksiyona yönlendirmesini söyledik.  
 
         }
 

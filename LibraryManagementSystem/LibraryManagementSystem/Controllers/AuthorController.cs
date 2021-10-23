@@ -14,7 +14,7 @@ namespace LibraryManagementSystem.Controllers
         LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
-            var values = db.authors.ToList();
+            var values = db.authors.Where(x => x.author_status == true).ToList();
             return View(values);
         }
 
@@ -32,6 +32,7 @@ namespace LibraryManagementSystem.Controllers
                 return View("AddAuthor");
             }
 
+            author.author_status = true;
             db.authors.Add(author);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -40,7 +41,7 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult DeleteAuthor(int id)
         {
             var author = db.authors.Find(id);
-            db.authors.Remove(author); // remove kullanmak için parametre olarak o nesneyi girmemiz gerekmekte
+            author.author_status = false; // remove kullanmak için parametre olarak o nesneyi girmemiz gerekmekte
             db.SaveChanges();
             return RedirectToAction("Index");
         }

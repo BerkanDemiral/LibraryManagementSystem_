@@ -22,15 +22,31 @@
     <tbody>
         @foreach (var category in Model)
         {
-            <tr>
-                <td>@category.id</td>
-                <td>@category.name</td>
-                <td>
-                    @Html.ActionLink("Sil", "DeleteCategory", new { id = category.id }, new { @class="btn btn-danger",
-                   onclick="return confirm('Silmek istiyor musunuz?')"})
-                </td>
-                <td><a href="/Category/GetCategory/@category.id" class="btn btn-success">Güncelle</a></td>
-            </tr>
+        <tr>
+            <td>@category.id</td>
+            <td>@category.name</td>
+            @*<td>
+                @Html.ActionLink("Sil", "DeleteCategory", new { id = category.id }, new
+                {
+                    @class = "btn btn-danger",
+                    onclick = "return confirm('Silmek istiyor musunuz?')"
+                })
+            </td>
+            <td><a href="/Category/GetCategory/@category.id" class="btn btn-success">Güncelle</a></td>*@
+
+            <td>
+                <a class="btn btn-danger btn-sm" href="/Category/DeleteCategory/@category.id">
+                    <i class="fas fa-trash"></i>
+                    Sil
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" href="/Category/GetCategory/@category.id">
+                    <i class="fas fa-pencil-alt"></i>
+                    Güncelle
+                </a>
+            </td>
+        </tr>
         }
     </tbody>
 

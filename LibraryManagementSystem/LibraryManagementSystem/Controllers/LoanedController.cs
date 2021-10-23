@@ -20,7 +20,7 @@ namespace LibraryManagementSystem.Controllers
         [HttpGet]
         public ActionResult Lend()
         {
-            List<SelectListItem> bookValue = (from book in db.books.ToList().OrderBy(b=>b.name)
+            List<SelectListItem> bookValue = (from book in db.books.Where(b=>b.situation==true).ToList().OrderBy(b=>b.name)
                                              select new SelectListItem
                                              {
                                                  Text = book.name,

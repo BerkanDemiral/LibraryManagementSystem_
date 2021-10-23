@@ -13,6 +13,8 @@ namespace LibraryManagementSystem.Controllers
         
         public ActionResult Index()
         {
+
+
             var value1 = db.members.Count();
             ViewBag.val1 = value1; // viewbag sayesinde bu actionResultun view  kısmında direkt @viewBag.val1 diyerek kullanabiliyoruz.
 
@@ -24,6 +26,9 @@ namespace LibraryManagementSystem.Controllers
 
             var value4 = db.penalties.Sum(p => p.price); // kasadaki toplam para tutarı
             ViewBag.val4 = value4;
+
+            var value5 = db.categories.Where(x => x.situation == true).ToList();
+            ViewBag.valCategories = value5;
 
             return View();
         }

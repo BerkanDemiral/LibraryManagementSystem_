@@ -15,7 +15,7 @@ namespace LibraryManagementSystem.Controllers
         LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
-            var values = db.categories.ToList(); // values ksımında tüm değerleri topluyoruz. 
+            var values = db.categories.Where(x=>x.situation==true).ToList(); // values ksımında tüm değerleri topluyoruz. 
 
             return View(values);
         }
@@ -29,6 +29,7 @@ namespace LibraryManagementSystem.Controllers
         [HttpPost]
         public ActionResult AddCategory(categories ctg)
         {
+            ctg.situation = true;
             db.categories.Add(ctg); // kategori tablosuna ekleme yap (parametre olarak gelen kategoriyi)
             db.SaveChanges(); // değişiklikleri kaydet
             return RedirectToAction("Index");  // AddCategory'e bağlanan view ekranını bize tekrar döndür.
@@ -37,7 +38,8 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult DeleteCategory(int id)
         {
             var category = db.categories.Find(id); // id değerine göre o kategoriyi bul
-            db.categories.Remove(category); // bulduğu kategoriyi sil
+            category.situation = false;
+            //db.categories.Remove(category); // bulduğu kategoriyi sil
             db.SaveChanges();
             return RedirectToAction("Index"); // kategorilerin listelendiği aksiyona yönlendirmesini söyledik. 
 

@@ -22,6 +22,7 @@
     <EntitySetMapping Name="authors">
       <EntityTypeMapping TypeName="LIBRARYModel.authors">
         <MappingFragment StoreEntitySet="authors">
+          <ScalarProperty Name="author_status" ColumnName="author_status" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />
           <ScalarProperty Name="last_name" ColumnName="last_name" />
@@ -32,6 +33,7 @@
     <EntitySetMapping Name="books">
       <EntityTypeMapping TypeName="LIBRARYModel.books">
         <MappingFragment StoreEntitySet="books">
+          <ScalarProperty Name="book_status" ColumnName="book_status" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="categorie_id" ColumnName="categorie_id" />
@@ -91,6 +93,7 @@
     <EntitySetMapping Name="members">
       <EntityTypeMapping TypeName="LIBRARYModel.members">
         <MappingFragment StoreEntitySet="members">
+          <ScalarProperty Name="member_status" ColumnName="member_status" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />
@@ -131,6 +134,7 @@
     <EntitySetMapping Name="personnels">
       <EntityTypeMapping TypeName="LIBRARYModel.personnels">
         <MappingFragment StoreEntitySet="personnels">
+          <ScalarProperty Name="personnel_status" ColumnName="personnel_status" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="personnel" ColumnName="personnel" />
         </MappingFragment>

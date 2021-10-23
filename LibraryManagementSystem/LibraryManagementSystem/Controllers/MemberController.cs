@@ -15,7 +15,7 @@ namespace LibraryManagementSystem.Controllers
         LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index(int page=1)
         {
-            var values = db.members.Where(x=>x.role ==false).ToList().ToPagedList(page,5);
+            var values = db.members.Where(x=>x.role ==false && x.member_status==true).ToList().ToPagedList(page,5);
             return View(values);
         }
 
@@ -33,7 +33,8 @@ namespace LibraryManagementSystem.Controllers
             {
                 return View("AddMember");
             }
-
+            member.member_status = true;
+            member.role = false;
             db.members.Add(member);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -42,7 +43,8 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult DeleteMember(int id)
         {
             var member = db.members.Find(id);
-            db.members.Remove(member); // remove kullanmak için parametre olarak o nesneyi girmemiz gerekmekte
+            member.member_status = false;
+            //db.members.Remove(member); // remove kullanmak için parametre olarak o nesneyi girmemiz gerekmekte
             db.SaveChanges();
             return RedirectToAction("Index");
         }

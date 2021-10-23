@@ -17,15 +17,32 @@
     @foreach (var personnel in Model)
 
     {
-        <tr>
-            <td>@personnel.id</td>
-            <td>@personnel.personnel</td>
-            <td>
-                @Html.ActionLink("Sil","DeletePersonnel", new { id = personnel.id }, new { @class="btn btn-danger",
-       onclick="return confirm('Silmek istiyor musunuz?')"})
-            </td>
-            <td><a href="/Personnel/GetPersonnel/@personnel.id" class="btn btn-success">Güncelle</a></td>
-        </tr>
+<tr>
+    <td>@personnel.id</td>
+    <td>@personnel.personnel</td>
+    @*<td>
+        @Html.ActionLink("Sil", "DeletePersonnel", new { id = personnel.id }, new
+        {
+            @class = "btn btn-danger",
+            onclick = "return confirm('Silmek istiyor musunuz?')"
+        })
+    </td>
+    <td><a href="/Personnel/GetPersonnel/@personnel.id" class="btn btn-success">Güncelle</a></td>*@
+
+    <td>
+        <a class="btn btn-danger btn-sm" href="/Personnel/DeletePersonnel/@personnel.id">
+            <i class="fas fa-trash"></i>
+            Sil
+        </a>
+    </td>
+    <td>
+        <a class="btn btn-info btn-sm" href="/Personnel/GetPersonnel/@personnel.id">
+            <i class="fas fa-pencil-alt"></i>
+            Güncelle
+        </a>
+    </td>
+
+</tr>
     }
 
 </table>

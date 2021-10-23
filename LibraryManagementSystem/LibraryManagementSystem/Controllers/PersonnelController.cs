@@ -13,7 +13,7 @@ namespace LibraryManagementSystem.Controllers
         LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
-            var values = db.personnels.ToList();
+            var values = db.personnels.Where(x=>x.personnel_status==true).ToList();
             return View(values);
         }
 
@@ -32,6 +32,7 @@ namespace LibraryManagementSystem.Controllers
                 return View("AddPersonnel");
             }
 
+            prs.personnel_status = true;
             db.personnels.Add(prs);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -41,7 +42,8 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult DeletePersonnel(int id)
         {
             var personnel = db.personnels.Find(id);
-            db.personnels.Remove(personnel); // remove kullanmak için parametre olarak o nesneyi girmemiz gerekmekte
+            personnel.personnel_status = false;
+            //db.personnels.Remove(personnel); // remove kullanmak için parametre olarak o nesneyi girmemiz gerekmekte
             db.SaveChanges();
             return RedirectToAction("Index");
         }

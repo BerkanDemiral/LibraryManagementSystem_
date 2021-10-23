@@ -25,6 +25,7 @@
     <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="books" Relationship="Self.FK_books_authors" FromRole="authors" ToRole="books" />
+    <Property Name="author_status" Type="Boolean" />
   </EntityType>
   <EntityType Name="books">
     <Key>
@@ -43,6 +44,7 @@
     <NavigationProperty Name="authors" Relationship="Self.FK_books_authors" FromRole="books" ToRole="authors" />
     <NavigationProperty Name="categories" Relationship="Self.FK_books_categories" FromRole="books" ToRole="categories" />
     <NavigationProperty Name="events" Relationship="Self.FK_events_books" FromRole="books" ToRole="events" />
+    <Property Name="book_status" Type="Boolean" />
   </EntityType>
   <EntityType Name="cases">
     <Key>
@@ -104,6 +106,7 @@
     <NavigationProperty Name="events" Relationship="Self.FK_events_members" FromRole="members" ToRole="events" />
     <NavigationProperty Name="penalties" Relationship="Self.FK_penalties_members" FromRole="members" ToRole="penalties" />
     <Property Name="role" Type="Boolean" />
+    <Property Name="member_status" Type="Boolean" />
   </EntityType>
   <EntityType Name="messages">
     <Key>
@@ -136,6 +139,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="personnel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="events" Relationship="Self.FK_events_personnels" FromRole="personnels" ToRole="events" />
+    <Property Name="personnel_status" Type="Boolean" />
   </EntityType>
   <Association Name="FK_books_authors">
     <End Role="authors" Type="Self.authors" Multiplicity="0..1" />

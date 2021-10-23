@@ -17,7 +17,7 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult Index()
         {
             Class1 enumerableClass = new Class1();
-            enumerableClass.Vaue1 = db.books.ToList();
+            enumerableClass.Vaue1 = db.books.Where(x=>x.book_status==true).ToList();
             enumerableClass.Value2 = db.about_us.ToList();
 
             return View(enumerableClass);
@@ -29,6 +29,12 @@ namespace LibraryManagementSystem.Controllers
             db.contact.Add(cnt);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+   
+        public ActionResult GetBook(int id)
+        {
+            var book = db.books.Find(id);
+            return View(book);
         }
     }
 }

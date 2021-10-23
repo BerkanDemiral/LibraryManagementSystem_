@@ -21,17 +21,27 @@
     <tbody>
         @foreach (var author in Model)
         {
-            <tr>
-                <td>@author.id</td>
-                <td>@author.first_name</td>
-                <td>@author.last_name</td>
-                <td>
-                    @Html.ActionLink("Sil","DeleteAuthor", new { id = author.id }, new { @class="btn btn-danger",
-           onclick="return confirm('Silmek istiyor musunuz?')"})
-                </td>
-                <td><a href="/Author/GetAuthor/@author.id" class="btn btn-success">Güncelle</a></td>
-                <td><a href="/Author/AuthorDetail/@author.id" class="btn btn-warning">Yazar Detayları</a></td>
-            </tr>
+        <tr>
+            <td>@author.id</td>
+            <td>@author.first_name</td>
+            <td>@author.last_name</td>
+
+            <td>
+                <a class="btn btn-danger btn-sm" href="/Author/DeleteAuthor/@author.id">
+                    <i class="fas fa-trash"></i>
+                    Sil
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" href="/Author/GetAuthor/@author.id">
+                    <i class="fas fa-pencil-alt"></i>
+                    Güncelle
+                </a>
+            </td>
+
+
+            <td><a href="/Author/AuthorDetail/@author.id" class="btn btn-warning">Yazar Detayları</a></td>
+        </tr>
         }
     </tbody>
 

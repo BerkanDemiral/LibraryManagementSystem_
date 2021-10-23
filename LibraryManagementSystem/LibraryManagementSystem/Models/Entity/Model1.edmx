@@ -29,6 +29,7 @@
           <Property Name="first_name" Type="varchar" MaxLength="50" />
           <Property Name="last_name" Type="varchar" MaxLength="50" />
           <Property Name="detail" Type="varchar(max)" />
+          <Property Name="author_status" Type="bit" />
         </EntityType>
         <EntityType Name="books">
           <Key>
@@ -44,6 +45,7 @@
           <Property Name="situation" Type="bit" />
           <Property Name="image" Type="varchar" MaxLength="300" />
           <Property Name="book_description" Type="varchar(max)" />
+          <Property Name="book_status" Type="bit" />
         </EntityType>
         <EntityType Name="cases">
           <Key>
@@ -98,6 +100,7 @@
           <Property Name="phone_number" Type="varchar" MaxLength="20" />
           <Property Name="school" Type="varchar" MaxLength="100" />
           <Property Name="role" Type="bit" />
+          <Property Name="member_status" Type="bit" />
         </EntityType>
         <EntityType Name="messages">
           <Key>
@@ -127,6 +130,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="personnel" Type="varchar" MaxLength="50" />
+          <Property Name="personnel_status" Type="bit" />
         </EntityType>
         <Association Name="FK_books_authors">
           <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
@@ -318,6 +322,7 @@
           <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="books" Relationship="Self.FK_books_authors" FromRole="authors" ToRole="books" />
+          <Property Name="author_status" Type="Boolean" />
         </EntityType>
         <EntityType Name="books">
           <Key>
@@ -336,6 +341,7 @@
           <NavigationProperty Name="authors" Relationship="Self.FK_books_authors" FromRole="books" ToRole="authors" />
           <NavigationProperty Name="categories" Relationship="Self.FK_books_categories" FromRole="books" ToRole="categories" />
           <NavigationProperty Name="events" Relationship="Self.FK_events_books" FromRole="books" ToRole="events" />
+          <Property Name="book_status" Type="Boolean" />
         </EntityType>
         <EntityType Name="cases">
           <Key>
@@ -397,6 +403,7 @@
           <NavigationProperty Name="events" Relationship="Self.FK_events_members" FromRole="members" ToRole="events" />
           <NavigationProperty Name="penalties" Relationship="Self.FK_penalties_members" FromRole="members" ToRole="penalties" />
           <Property Name="role" Type="Boolean" />
+          <Property Name="member_status" Type="Boolean" />
         </EntityType>
         <EntityType Name="messages">
           <Key>
@@ -429,6 +436,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="personnel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="events" Relationship="Self.FK_events_personnels" FromRole="personnels" ToRole="events" />
+          <Property Name="personnel_status" Type="Boolean" />
         </EntityType>
         <Association Name="FK_books_authors">
           <End Role="authors" Type="Self.authors" Multiplicity="0..1" />
@@ -628,6 +636,7 @@
           <EntitySetMapping Name="authors">
             <EntityTypeMapping TypeName="LIBRARYModel.authors">
               <MappingFragment StoreEntitySet="authors">
+                <ScalarProperty Name="author_status" ColumnName="author_status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
@@ -638,6 +647,7 @@
           <EntitySetMapping Name="books">
             <EntityTypeMapping TypeName="LIBRARYModel.books">
               <MappingFragment StoreEntitySet="books">
+                <ScalarProperty Name="book_status" ColumnName="book_status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="categorie_id" ColumnName="categorie_id" />
@@ -697,6 +707,7 @@
           <EntitySetMapping Name="members">
             <EntityTypeMapping TypeName="LIBRARYModel.members">
               <MappingFragment StoreEntitySet="members">
+                <ScalarProperty Name="member_status" ColumnName="member_status" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
@@ -737,6 +748,7 @@
           <EntitySetMapping Name="personnels">
             <EntityTypeMapping TypeName="LIBRARYModel.personnels">
               <MappingFragment StoreEntitySet="personnels">
+                <ScalarProperty Name="personnel_status" ColumnName="personnel_status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="personnel" ColumnName="personnel" />
               </MappingFragment>

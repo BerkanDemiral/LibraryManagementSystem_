@@ -24,6 +24,7 @@
     <Property Name="first_name" Type="varchar" MaxLength="50" />
     <Property Name="last_name" Type="varchar" MaxLength="50" />
     <Property Name="detail" Type="varchar(max)" />
+    <Property Name="author_status" Type="bit" />
   </EntityType>
   <EntityType Name="books">
     <Key>
@@ -39,6 +40,7 @@
     <Property Name="situation" Type="bit" />
     <Property Name="image" Type="varchar" MaxLength="300" />
     <Property Name="book_description" Type="varchar(max)" />
+    <Property Name="book_status" Type="bit" />
   </EntityType>
   <EntityType Name="cases">
     <Key>
@@ -93,6 +95,7 @@
     <Property Name="phone_number" Type="varchar" MaxLength="20" />
     <Property Name="school" Type="varchar" MaxLength="100" />
     <Property Name="role" Type="bit" />
+    <Property Name="member_status" Type="bit" />
   </EntityType>
   <EntityType Name="messages">
     <Key>
@@ -122,6 +125,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="personnel" Type="varchar" MaxLength="50" />
+    <Property Name="personnel_status" Type="bit" />
   </EntityType>
   <Association Name="FK_books_authors">
     <End Role="authors" Type="Self.authors" Multiplicity="0..1" />

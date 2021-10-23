@@ -27,25 +27,40 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult Login(members member)
         {
             var values = db.members.FirstOrDefault(m => m.email == member.email && m.password == member.password);
-            if(values != null && values.role == false)
+            if (values != null && values.role == true)
             {
+
                 FormsAuthentication.SetAuthCookie(values.email, false);
                 Session["email"] = values.email.ToString();
-                return RedirectToAction("Index","MemberPanel/Index");
-            }
-            else if(values != null && values.role==true)
-            {
-                FormsAuthentication.SetAuthCookie(values.email, false);
-                Session["email"] = values.email.ToString();
-                return RedirectToAction("Index","Statistics/Index");
+                return RedirectToAction("Index", "Statistics/Index");
             }
 
             else
             {
                 return View();
             }
+        }
+        [HttpGet]
+        public ActionResult MemberLogin()
+        {
+            return View();
+        }
 
-            
+        [HttpPost]
+        public ActionResult MemberLogin(members member)
+        {
+            var values = db.members.FirstOrDefault(m => m.email == member.email && m.password == member.password);
+            if (values != null && values.role == false)
+            {
+                FormsAuthentication.SetAuthCookie(values.email, false);
+                Session["email"] = values.email.ToString();
+                return RedirectToAction("Index", "MemberPanel/Index");
+            }
+
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -64,14 +79,14 @@ namespace LibraryManagementSystem.Controllers
 
             db.members.Add(member);
             db.SaveChanges();
-            return RedirectToAction("Login");
+            return RedirectToAction("MemberLogin","Authentication/MemberLogin");
         }
 
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Login", "Authentication/Login");
+            return RedirectToAction("Index", "ShowCase/Index");
         }
     }
 }

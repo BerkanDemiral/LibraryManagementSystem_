@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+@{ var status = "";}
 
 <h2>Kitaplar</h2>
 <br />
@@ -27,21 +28,48 @@
     <tbody>
         @foreach (var book in Model)
         {
-            <tr>
-                <td>@book.id</td>
-                <td>@book.name</td>
-                <td>@book.authors.first_name @book.authors.last_name</td>
-                <td>@book.categories.name</td>
-                <td>@book.publication_year</td>
-                <td>@book.publisher</td>
-                <td>@book.number_of_page</td>
-                <td>@book.situation</td>
-                <td>
-                    @Html.ActionLink("Sil", "DeleteBook", new { id = book.id }, new { @class="btn btn-danger",
-        onclick="return confirm('Silmek istiyor musunuz?')"})
-                </td>
-                <td><a href="/Book/GetBook/@book.id" class="btn btn-success">Güncelle</a></td>
-            </tr>
+            if(book.situation == true)
+            {
+                status = "Alınabilir";
+            }
+                else
+                {
+                status = "Alınamaz";
+                }
+
+        <tr>
+            <td>@book.id</td>
+            <td>@book.name</td>
+            <td>@book.authors.first_name @book.authors.last_name</td>
+            <td>@book.categories.name</td>
+            <td>@book.publication_year</td>
+            <td>@book.publisher</td>
+            <td>@book.number_of_page</td>
+            <td>@status</td>
+            @*<td>
+                @Html.ActionLink("Sil", "DeleteBook", new { id = book.id }, new
+                {
+                    @class = "btn btn-danger",
+                    onclick = "return confirm('Silmek istiyor musunuz?')"
+                })
+            </td>
+            <td><a href="/Book/GetBook/@book.id" class="btn btn-success">Güncelle</a></td>*@
+
+
+            <td>
+                <a class="btn btn-danger btn-sm" href="/Book/DeleteBook/@book.id">
+                    <i class="fas fa-trash"></i>
+                    Sil
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" href="/Book/GetBook/@book.id">
+                    <i class="fas fa-pencil-alt"></i>
+                    Güncelle
+                </a>
+            </td>
+
+        </tr>
         }
     </tbody>
 </table>
