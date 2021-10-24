@@ -49,6 +49,7 @@ namespace LibraryManagementSystem.Controllers
             book.categories = category;
             book.authors = author;
             book.situation = true;
+            book.book_status = true;
 
             db.books.Add(book);
             db.SaveChanges();

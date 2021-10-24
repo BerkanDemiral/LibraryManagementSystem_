@@ -16,18 +16,22 @@
     </div>
     <div style="margin-top:15px">
         <label>Kitap Kategori</label>
-        @Html.DropDownListFor(book => book.categories.id,(List<SelectListItem>)ViewBag.value1,
-       new { @class ="form-control"})
+        @Html.DropDownListFor(book => book.categories.id, (List<SelectListItem>)ViewBag.value1,
+            new { @class = "form-control" })
     </div>
     <div style="margin-top:15px">
         <label>Yazar</label>
-        @Html.DropDownListFor(book=> book.authors.id,(List<SelectListItem>)ViewBag.value2,
-       new { @class="form-control" })
+        @Html.DropDownListFor(book => book.authors.id, (List<SelectListItem>)ViewBag.value2,
+            new { @class = "form-control" })
     </div>
 
     <div style="margin-top:15px">
         <label>Basım Yılı</label>
         @Html.TextBoxFor(book => book.publication_year, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap Hakkında</label>
+        @Html.TextBoxFor(book => book.book_description, new { @class = "form-control" })
     </div>
     <div style="margin-top:15px">
         <label>Yayınevi</label>
@@ -49,7 +53,7 @@
     </div>
 
     <div style="margin-top:15px">
-        <button class="btn btn-default" style="background-color:orange; color:white;" >Kitap Ekle</button>
+        <button class="btn btn-default" style="background-color:orange; color:white;">Kitap Ekle</button>
     </div>
     <input type="hidden" name="situation" value="True" />
 </form>

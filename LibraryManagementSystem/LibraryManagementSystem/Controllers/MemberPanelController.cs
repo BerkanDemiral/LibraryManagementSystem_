@@ -18,8 +18,45 @@ namespace LibraryManagementSystem.Controllers
         {
             var userEmail = (string)Session["email"];
             var values = db.members.FirstOrDefault(z => z.email == userEmail);
+
+            //
+
+            var name = db.members.Where(x => x.email == userEmail).Select(y => y.first_name + " " + y.last_name).FirstOrDefault();
+            ViewBag.name = name;
+
+            var photo = db.members.Where(x => x.email == userEmail).Select(y => y.photos).FirstOrDefault();
+            ViewBag.photo = photo;
+
+            var userName = db.members.Where(x => x.email == userEmail).Select(y => y.user_name).FirstOrDefault();
+            ViewBag.userName = userName;
+
+            var school = db.members.Where(x => x.email == userEmail).Select(y => y.school).FirstOrDefault();
+            ViewBag.school = school;
+
+            var phone = db.members.Where(x => x.email == userEmail).Select(y => y.phone_number).FirstOrDefault();
+            ViewBag.phone = phone;
+
+            var memberId = db.members.Where(x => x.email == userEmail).Select(y => y.id).FirstOrDefault();
+            var numberOfEvent = db.events.Where(x => x.member_id == memberId).Count();
+            ViewBag.numberOfEvent = numberOfEvent;
+
             return View(values);
         }
+
+        public PartialViewResult Announcement2()
+        {
+            var values = db.announcements.ToList();
+            return PartialView("Announcement2", values);
+        }
+
+        public PartialViewResult Settings()
+        {
+            var userEmail = (string)Session["email"];
+            var id = db.members.Where(x => x.email == userEmail).Select(y => y.id).FirstOrDefault();
+            var getMember = db.members.Find(id);
+            return PartialView("Settings",getMember);
+        } 
+
         [HttpPost]
         public ActionResult Index2(members p)
         {

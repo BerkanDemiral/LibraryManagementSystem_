@@ -18,9 +18,9 @@ namespace LibraryManagementSystem.Controllers
 
         public ActionResult Inbox()
         {
-            var userEmail = (string)Session["email"].ToString();
-            var m = db.messages.Where(x => x.to_ == userEmail.ToString()).ToList(); ;
-            return View(m);
+            //var userEmail = (string)Session["email"].ToString();
+            //var m = db.messages.Where(x => x.to_ == userEmail.ToString()).ToList(); ;
+            return View();
         }
 
         public ActionResult Outbox()
@@ -47,6 +47,18 @@ namespace LibraryManagementSystem.Controllers
             db.messages.Add(message);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult MessagePartial()
+        {
+            string userEmail = (string)Session["email"]; // kullancının emailini aldık.
+            var numberOfInbox = db.messages.Where(x => x.to_ == userEmail).Count();
+            ViewBag.inbox = numberOfInbox;
+
+            var numberOfSendBox = db.messages.Where(x => x.sender == userEmail).Count();
+            ViewBag.sendBox = numberOfSendBox;
+
+            return PartialView();
         }
     }
 }

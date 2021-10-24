@@ -73,8 +73,8 @@ namespace LibraryManagementSystem.Controllers
                 Select(pub => pub.Key).FirstOrDefault();
             ViewBag.val8 = value8;
 
-            var value9 = db.events.Where(e => e.get_date == DateTime.Now).Count();
-            ViewBag.val9 = value9;
+            //var value9 = db.events.Where(e => e.get_date == DateTime.Now).Count();
+            //ViewBag.val9 = value9;
 
             var value10 = db.bestMember().FirstOrDefault();
             ViewBag.val10 = value10;
