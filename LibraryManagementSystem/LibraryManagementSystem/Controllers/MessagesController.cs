@@ -18,17 +18,15 @@ namespace LibraryManagementSystem.Controllers
 
         public ActionResult Inbox()
         {
-            //var userEmail = (string)Session["email"].ToString();
-            //var m = db.messages.Where(x => x.to_ == userEmail.ToString()).ToList(); ;
-            return View();
+            var userEmail = (string)Session["email"];
+            var m = db.messages.Where(x => x.to_ == userEmail).ToList();
+            return View(m);
         }
 
         public ActionResult Outbox()
         {
-
-
-            var userEmail = (string)Session["email"].ToString();
-            var m = db.messages.Where(x => x.sender == userEmail.ToString()).ToList(); ;
+            var userEmail = (string)Session["email"];
+            var m = db.messages.Where(x => x.sender == userEmail).ToList(); ;
             return View(m);
         }
 
@@ -46,10 +44,10 @@ namespace LibraryManagementSystem.Controllers
             message.date = DateTime.Parse(DateTime.Now.ToShortDateString());
             db.messages.Add(message);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Outbox","Messages");
         }
 
-        public ActionResult MessagePartial()
+        public PartialViewResult MessagePartial_()
         {
             string userEmail = (string)Session["email"]; // kullancının emailini aldık.
             var numberOfInbox = db.messages.Where(x => x.to_ == userEmail).Count();

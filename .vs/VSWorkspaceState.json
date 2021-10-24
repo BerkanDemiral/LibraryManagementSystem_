@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\LibraryManagementSystem",
+    "\\LibraryManagementSystem\\LibraryManagementSystem",
+    "\\LibraryManagementSystem\\LibraryManagementSystem\\Controllers",
+    "\\LibraryManagementSystem\\LibraryManagementSystem\\Views",
+    "\\LibraryManagementSystem\\LibraryManagementSystem\\Views\\Authentication",
+    "\\LibraryManagementSystem\\LibraryManagementSystem\\Views\\Messages"
   ],
-  "SelectedNode": "\\LibraryManagementSystem.sln",
+  "SelectedNode": "\\LibraryManagementSystem\\LibraryManagementSystem\\Views\\Messages\\Inbox.cshtml",
   "PreviewInSolutionExplorer": false
 }

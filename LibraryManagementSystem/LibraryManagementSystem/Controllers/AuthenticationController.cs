@@ -76,7 +76,8 @@ namespace LibraryManagementSystem.Controllers
             {
                 return View("Register");
             }
-
+            member.role = false;
+            member.member_status = true;
             db.members.Add(member);
             db.SaveChanges();
             return RedirectToAction("MemberLogin","Authentication/MemberLogin");

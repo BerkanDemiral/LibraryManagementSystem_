@@ -3093,7 +3093,8 @@
     <Content Include="Views\Authentication\MemberLogin.cshtml" />
     <Content Include="Views\MemberPanel\Announcement2.cshtml" />
     <Content Include="Views\MemberPanel\Settings.cshtml" />
-    <Content Include="Views\Messages\MessagePartial.cshtml" />
+    <Content Include="Views\ShowCase\BookDetail.cshtml" />
+    <Content Include="Views\Messages\MessagePartial_.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

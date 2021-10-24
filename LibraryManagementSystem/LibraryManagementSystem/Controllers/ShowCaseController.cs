@@ -36,5 +36,10 @@ namespace LibraryManagementSystem.Controllers
             var book = db.books.Find(id);
             return View(book);
         }
+
+        public ActionResult BookDetail(int? id)
+        {
+            return PartialView(db.books.FirstOrDefault(x => x.id == id));
+        }
     }
 }
