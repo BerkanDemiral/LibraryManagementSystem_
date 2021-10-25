@@ -19,8 +19,6 @@ namespace LibraryManagementSystem.Controllers
             var userEmail = (string)Session["email"];
             var values = db.members.FirstOrDefault(z => z.email == userEmail);
 
-            //
-
             var name = db.members.Where(x => x.email == userEmail).Select(y => y.first_name + " " + y.last_name).FirstOrDefault();
             ViewBag.name = name;
 

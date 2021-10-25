@@ -1,0 +1,62 @@
+﻿@using LibraryManagementSystem.Models.Entity
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<members>
+@{ ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/Layout.cshtml"; }
+
+<h2>Üyeler</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Üye Adı</th>
+        <th>Soyadı</th>
+        <th>Kullanıcı Adı</th>
+        <th>Mail Adresi</th>
+        <th>Telefon No</th>
+        <th>Okulu</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var member in Model)
+    {
+<tr>
+    <td>@member.id</td>
+    <td>@member.first_name</td>
+    <td>@member.last_name</td>
+    <td>@member.user_name</td>
+    <td>@member.email</td>
+    <td>@member.phone_number</td>
+    <td>@member.school</td>
+    @*<td>
+        @Html.ActionLink("Sil", "LendBook", new { id = member.id }, new
+        {
+            @class = "btn btn-danger",
+            onclick = "return confirm('Silmek istiyor musunuz?')"
+        })
+    </td>
+    <td><a href="/Member/GetMember/@member.id" class="btn btn-success">Güncelle</a></td>*@
+
+    <td>
+        <a class="btn btn-danger btn-sm" href="/Member/DeleteMember/@member.id">
+            <i class="fas fa-trash"></i>
+            Sil
+        </a>
+    </td>
+    <td>
+        <a class="btn btn-info btn-sm" href="/Member/GetMember/@member.id">
+            <i class="fas fa-pencil-alt"></i>
+            Güncelle
+        </a>
+    </td>
+
+    <td><a href="/Member/MemberDetail/@member.id" class="btn btn-warning">Üye Detayı</a></td>
+</tr>}
+
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+<a href="/Member/AddMember/" class="btn btn-primary">Yeni Üye Ekle</a>
+

@@ -1,0 +1,59 @@
+﻿@model LibraryManagementSystem.Models.Entity.events
+@{
+    ViewBag.Title = "ReturnBook";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Ödünç İade İşlemleri</h2>
+
+@using (Html.BeginForm("UpdateLend", "Loaned", FormMethod.Post))
+{
+    <div style="margin-bottom:25px"></div>
+    <div class="form-group">
+        <label>İşlem ID</label>
+        @Html.TextBoxFor(evnts => evnts.id, new { @class = "form-control" })
+
+        <br />
+
+        <label>Kitap Adı</label>
+        @Html.TextBoxFor(evnts => evnts.books.name, new { @class = "form-control" })
+        <br />
+
+     
+
+        <label>Üye</label>
+        @Html.TextBoxFor(evnts => evnts.members.first_name, new { @class = "form-control" })
+        <br />
+
+   
+
+        <label>Personel</label>
+        @Html.TextBoxFor(evnts => evnts.personnels.personnel, new { @class = "form-control" })
+        <br />
+
+      
+
+        <label>Alış Tarihi</label>
+        @Html.TextBoxFor(evnts => evnts.get_date, "{0: dd.MM.yyyy}", new { @class = "form-control" })
+        <br />
+
+        
+
+        <label>Son İade Tarihi</label>
+        @Html.TextBoxFor(evnts => evnts.return_date, "{0: dd.MM.yyyy}", new { @class = "form-control" })
+        <br />
+
+
+
+        <label>Üye İade Tarihi</label>
+        <input type="text" class="form-control" name="member_return_date" value="@DateTime.Now.ToShortDateString()" />
+        <br />
+
+        <label>Gecikme Süresi</label>
+        <input type="text" class="form-control" id="delayTime" value="@ViewBag.value" disabled />
+    </div>
+
+    <div>
+        <button class="btn btn-warning" >İade Al</button>
+    </div>
+}

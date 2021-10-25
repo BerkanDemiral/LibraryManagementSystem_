@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LibraryManagementSystem.Models;
 using LibraryManagementSystem.Models.Entity;
 namespace LibraryManagementSystem.Controllers
 {
@@ -62,6 +63,7 @@ namespace LibraryManagementSystem.Controllers
 
             var value6 = db.contact.Count();
             ViewBag.totalMessageCount = value6;
+            
 
             var value7 = db.WritedMaxBookAuthor().FirstOrDefault(); // aynı sayıda kitapa sahip 2 yazar olabilir. en üsttekini almalıyız.
             ViewBag.val7 = value7;
@@ -75,6 +77,7 @@ namespace LibraryManagementSystem.Controllers
 
             //var value9 = db.events.Where(e => e.get_date == DateTime.Now).Count();
             //ViewBag.val9 = value9;
+            
 
             var value10 = db.bestMember().FirstOrDefault();
             ViewBag.val10 = value10;
@@ -87,5 +90,73 @@ namespace LibraryManagementSystem.Controllers
 
             return View();
         }
+
+        public ActionResult VisualizationAuthorResult()
+        {
+            return Json(listResult(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult VisualizationAuthorResult2()
+        {
+            return Json(bookResult(), JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult VisualizationAuthorResult3()
+        {
+            return Json(categoryResult(), JsonRequestBehavior.AllowGet);
+
+        }
+
+        public List<PegeCountOfBooks> listResult()
+        {
+            var values = db.books.ToList();
+
+            List<PegeCountOfBooks> booksPages = new List<PegeCountOfBooks>();
+            foreach (var item in values)
+            {
+                booksPages.Add(new PegeCountOfBooks()
+                {
+                    bookName = item.name,
+                    pageCount = Convert.ToInt32(item.number_of_page)
+                });
+            }
+            return booksPages;      
+        }
+
+        public List<AuthorsBook> bookResult()
+        {
+            var values2 = db.author_stats.ToList();
+
+            List<AuthorsBook> authorsBooks = new List<AuthorsBook>();
+
+            foreach (var item in values2)
+            {
+                authorsBooks.Add(new AuthorsBook()
+                {
+                    AuthorName = item.author_name,
+                    CountOfBooks = item.count_of_books
+                });
+            }
+            return authorsBooks;
+        }
+
+        public List<CountOfCategories> categoryResult()
+        {
+            var values3 = db.category_stats.ToList();
+
+            List<CountOfCategories> countOfCategories = new List<CountOfCategories>();
+
+            foreach (var item in values3)
+            {
+                countOfCategories.Add(new CountOfCategories()
+                {
+                    CategoryName = item.category_name,
+                    CategoryCount = item.numberOfCategory
+                });
+            }
+            return countOfCategories;
+        }
+
     }
 }

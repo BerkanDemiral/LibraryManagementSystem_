@@ -9,44 +9,41 @@ namespace LibraryManagementSystem.Controllers
     public class MessagesController : Controller
     {
         LIBRARYEntities1 db = new LIBRARYEntities1();
-        //public ActionResult Index()
-        //{
-        //    var userEmail = (string)Session["email"].ToString();
-        //    var m = db.messages.Where(x => x.to_ == userEmail.ToString()).ToList(); ;
-        //    return View(m);
-        //}
 
+        [HttpGet]
         public ActionResult Inbox()
         {
-            var userEmail = (string)Session["email"];
-            var m = db.messages.Where(x => x.to_ == userEmail).ToList();
-            return View(m);
-        }
+            string userEmail = (string)Session["email"];
+            var message = db.messages.Where(x => x.to_ == userEmail.ToString()).ToList();
 
-        public ActionResult Outbox()
+            return View(message);
+        }
+        [HttpPost]
+        public ActionResult Inbox(string word)
         {
-            var userEmail = (string)Session["email"];
-            var m = db.messages.Where(x => x.sender == userEmail).ToList(); ;
-            return View(m);
+            string userEmail = (string)Session["email"];
+            var message = db.messages.Where(x => x.to_ == userEmail.ToString() && x.message.Contains(word)).ToList();
+            
+            return View(message);
         }
 
         [HttpGet]
-        public ActionResult NewMessage()
+        public ActionResult Outbox()
         {
-            return View();
+            string userEmail = (string)Session["email"];
+            var message = db.messages.Where(x => x.sender == userEmail.ToString()).ToList();
+
+            return View(message);
         }
 
         [HttpPost]
-        public ActionResult NewMessage(messages message)
+        public ActionResult Outbox(string word)
         {
-            var userEmail = (string)Session["email"];
-            message.sender = userEmail.ToString();
-            message.date = DateTime.Parse(DateTime.Now.ToShortDateString());
-            db.messages.Add(message);
-            db.SaveChanges();
-            return RedirectToAction("Outbox","Messages");
-        }
+            string userEmail = (string)Session["email"];
+            var message = db.messages.Where(x => x.sender == userEmail.ToString() && x.message.Contains(word)).ToList();
 
+            return View(message);
+        }
         public PartialViewResult MessagePartial_()
         {
             string userEmail = (string)Session["email"]; // kullancının emailini aldık.
@@ -58,5 +55,30 @@ namespace LibraryManagementSystem.Controllers
 
             return PartialView();
         }
+
+        [HttpGet]
+        public ActionResult NewMessage()
+        {
+            var userEmail = (string)Session["email"];
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewMessage(messages msg)
+        {
+            var userEmail = (string)Session["email"];
+            msg.sender = userEmail.ToString();
+            msg.date = DateTime.Parse(DateTime.Now.ToShortDateString());
+            db.messages.Add(msg);
+            db.SaveChanges();
+            return RedirectToAction("Outbox","Messages");
+        }
+
+        public ActionResult GetMessageDetail(int id)
+        {
+            var messageValue = db.messages.Find(id);
+            return View(messageValue);
+        }
+
     }
 }

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Raporlama Paneli</h2>
+<br />
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tablo Adı</th>
+            <th>Rapor</th>
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+        <tr>
+            <td>Kitaplar</td>
+            <td>
+                <a class="btn btn-info btn-sm" href="/Reporting/BookReport/">
+                    <i class="fas fa-pencil-alt"></i>
+                    Rapor
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>Yazarlar</td>
+            <td>
+                <a class="btn btn-info btn-sm" href="/Reporting/AuthorReport/">
+                    <i class="fas fa-pencil-alt"></i>
+                    Rapor
+                </a>
+            </td>
+        </tr>
+        <tr>
+    <td>Kategoriler</td>
+    <td>
+        <a class="btn btn-info btn-sm" href="/Reporting/CategoryReport/">
+            <i class="fas fa-pencil-alt"></i>
+            Rapor
+        </a>
+    </td>
+
+    </tr>
+    </tbody>
+</table>

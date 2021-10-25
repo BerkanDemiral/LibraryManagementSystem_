@@ -17,7 +17,7 @@ namespace LibraryManagementSystem.Controllers
         public ActionResult Index()
         {
             Class1 enumerableClass = new Class1();
-            enumerableClass.Vaue1 = db.books.Where(x=>x.book_status==true).ToList();
+            enumerableClass.Vaue1 = db.books.Where(x=>x.book_status==true && x.situation==true).ToList().Take(9);
             enumerableClass.Value2 = db.about_us.ToList();
 
             return View(enumerableClass);

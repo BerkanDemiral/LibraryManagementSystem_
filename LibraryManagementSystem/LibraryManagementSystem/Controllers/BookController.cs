@@ -13,7 +13,7 @@ namespace LibraryManagementSystem.Controllers
         LIBRARYEntities1 db = new LIBRARYEntities1();
         public ActionResult Index()
         {
-            var values = db.books.Where(x => x.book_status == true).ToList();
+            var values = db.books.ToList();
             return View(values);
         }
 
@@ -100,7 +100,7 @@ namespace LibraryManagementSystem.Controllers
             _book.publisher = book.publisher;
             _book.number_of_page = book.number_of_page;
             _book.situation = true;
-
+            _book.book_status = true;
             var category = db.categories.Where(ctg => ctg.id == book.categories.id).FirstOrDefault();
             var author = db.authors.Where(auth => auth.id == book.authors.id).FirstOrDefault();
 

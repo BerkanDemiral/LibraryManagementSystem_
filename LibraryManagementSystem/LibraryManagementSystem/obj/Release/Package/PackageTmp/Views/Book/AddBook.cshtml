@@ -1,0 +1,60 @@
+﻿@model LibraryManagementSystem.Models.Entity.books
+
+@{
+    ViewBag.Title = "AddBook";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Kitap Ekle</h2>
+
+<form class="form-group" method="post">
+    <div>
+    </div>
+    <div style="margin-top:25px">
+        <label>Kitap Adı</label>
+        @Html.TextBoxFor(book => book.name, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap Kategori</label>
+        @Html.DropDownListFor(book => book.categories.id, (List<SelectListItem>)ViewBag.value1,
+            new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Yazar</label>
+        @Html.DropDownListFor(book => book.authors.id, (List<SelectListItem>)ViewBag.value2,
+            new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>Basım Yılı</label>
+        @Html.TextBoxFor(book => book.publication_year, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap Hakkında</label>
+        @Html.TextBoxFor(book => book.book_description, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Yayınevi</label>
+        @Html.TextBoxFor(book => book.publisher, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Sayfa Sayısı</label>
+        @Html.TextBoxFor(book => book.number_of_page, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+
+        <label>Kitap Resmi</label>
+        <br />
+
+        <input type="text" placeholder="url ile ekle..." id="urlselectimage" class="form-control" />
+        <br />
+        <input type="file" name="image" id="selectimage" class="form-control" />
+        <br />
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-default" style="background-color:orange; color:white;">Kitap Ekle</button>
+    </div>
+    <input type="hidden" name="situation" value="True" />
+</form>
+

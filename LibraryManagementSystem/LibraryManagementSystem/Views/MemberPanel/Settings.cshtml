@@ -5,104 +5,115 @@
 
 {
 
-    <form class="form-horizontal">
+<form class="form-horizontal">
 
-        <div class="form-group row">
+    <div class="form-group row">
 
-            <label for="inputName" class="col-sm-2 col-form-label">Ad</label>
+        <label for="inputName" class="col-sm-2 col-form-label">Ad</label>
 
-            <div class="col-sm-10">
+        <div class="col-sm-10">
 
-                @Html.TextBoxFor(x => x.first_name, new { @class = "form-control", @readonly = "readonly" })
-
-            </div>
+            @Html.TextBoxFor(x => x.first_name, new { @class = "form-control", @readonly = "readonly" })
 
         </div>
 
-        <div class="form-group row">
+    </div>
 
-            <label for="inputName" class="col-sm-2 col-form-label">Soyad</label>
+    <div class="form-group row">
 
-            <div class="col-sm-10">
+        <label for="inputName" class="col-sm-2 col-form-label">Soyad</label>
 
-                @Html.TextBoxFor(x => x.last_name, new { @class = "form-control", @readonly = "readonly" })
+        <div class="col-sm-10">
 
-            </div>
-
-        </div>
-
-        <div class="form-group row">
-
-            <label for="inputName" class="col-sm-2 col-form-label">Kullanıcı Adı</label>
-
-            <div class="col-sm-10">
-
-                @Html.TextBoxFor(x => x.user_name, new { @class = "form-control" })
-
-            </div>
+            @Html.TextBoxFor(x => x.last_name, new { @class = "form-control", @readonly = "readonly" })
 
         </div>
 
-        <div class="form-group row">
+    </div>
 
-            <label for="inputName" class="col-sm-2 col-form-label">Email</label>
+    <div class="form-group row">
 
-            <div class="col-sm-10">
+        <label for="inputName" class="col-sm-2 col-form-label">Kullanıcı Adı</label>
 
-                @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
+        <div class="col-sm-10">
 
-            </div>
-
-        </div>
-
-
-        <div class="form-group row">
-
-            <label for="inputName" class="col-sm-2 col-form-label">Şifre</label>
-
-            <div class="col-sm-10">
-
-                @Html.TextBoxFor(x => x.password, new { @class = "form-control" })
-
-            </div>
+            @Html.TextBoxFor(x => x.user_name, new { @class = "form-control" })
 
         </div>
 
-        <div class="form-group row">
+    </div>
 
-            <label for="inputName" class="col-sm-2 col-form-label">Fotoğraf</label>
+    <div class="form-group row">
 
-            <div class="col-sm-10">
+        <label for="inputName" class="col-sm-2 col-form-label">Email</label>
 
-                @Html.TextBoxFor(x => x.photos, new { @class = "form-control" })
+        <div class="col-sm-10">
 
-            </div>
-
-        </div>
-
-        <div class="form-group row">
-
-            <label for="inputName" class="col-sm-2 col-form-label">Okul</label>
-
-            <div class="col-sm-10">
-
-                @Html.TextBoxFor(x => x.school, new { @class = "form-control", @readonly = "readonly" })
-
-            </div>
+            @Html.TextBoxFor(x => x.email, new { @class = "form-control" })
 
         </div>
 
+    </div>
 
-        <div class="form-group row">
 
-            <div class="offset-sm-2 col-sm-10">
+    <div class="form-group row">
 
-                <button type="submit" class="btn btn-danger">Güncelle</button>
+        <label for="inputName" class="col-sm-2 col-form-label">Şifre</label>
 
-            </div>
+        <div class="col-sm-10">
+
+            @Html.TextBoxFor(x => x.password, new { @class = "form-control" })
 
         </div>
 
-    </form>
+    </div>
+
+    <div class="form-group row">
+
+        <label for="inputName" class="col-sm-2 col-form-label">Fotoğraf</label>
+
+        <div class="col-sm-10">
+
+            @Html.TextBoxFor(x => x.photos, new { @class = "form-control" })
+
+        </div>
+
+    </div>
+    <div class="form-group row">
+
+        <label for="inputName" class="col-sm-2 col-form-label">Fotoğraf</label>
+
+        <div class="col-sm-10">
+
+            @Html.TextBoxFor(x => x.photos, new { @class = "form-control" })
+
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+
+        <label for="inputName" class="col-sm-2 col-form-label">Okul</label>
+
+        <div class="col-sm-10">
+
+            @Html.TextBoxFor(x => x.school, new { @class = "form-control", @readonly = "readonly" })
+
+        </div>
+
+    </div>
+
+
+    <div class="form-group row">
+
+        <div class="offset-sm-2 col-sm-10">
+
+            <button type="submit" class="btn btn-danger">Güncelle</button>
+
+        </div>
+
+    </div>
+
+</form>
 
 }

@@ -1,0 +1,25 @@
+﻿@model LibraryManagementSystem.Models.Entity.announcements
+@{
+    ViewBag.Title = "AddAnnouncement";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Duyuru Ekle</h2>
+<br />
+
+<form class="form-group" method="post">
+    <div style="margin-top:25px">
+        <label>Kategori</label>
+        @Html.TextBoxFor(x => x.category, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Detay</label>
+        @Html.TextBoxFor(x => x.content, new { @class = "form-control" })
+    </div>
+
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Ekle</button>
+    </div>
+</form>

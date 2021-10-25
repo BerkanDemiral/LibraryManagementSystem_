@@ -53,7 +53,7 @@ namespace LibraryManagementSystem.Controllers
             if (values != null && values.role == false)
             {
                 FormsAuthentication.SetAuthCookie(values.email, false);
-                Session["email"] = values.email.ToString();
+                Session["email"] = values.email;
                 return RedirectToAction("Index", "MemberPanel/Index");
             }
 

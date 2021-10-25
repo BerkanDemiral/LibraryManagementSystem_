@@ -1,6 +1,4 @@
-﻿@model LibraryManagementSystem.Models.Entity.members
-
-@{ Layout = null; }
+﻿@{ Layout = null; }
 
 <!DOCTYPE html>
 
@@ -12,7 +10,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Kullanıcı Paneli</title>
 
     <!-- Tell the browser to be responsive to screen width -->
 
@@ -76,15 +74,11 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
-                    <div class="image">
-
-                        <img src="~/AdminLTE-3.0.4/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-
-                    </div>
+                    
 
                     <div class="info">
 
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">Kullanıcı Paneli</a>
 
                     </div>
 
@@ -94,22 +88,13 @@
 
                 <nav class="mt-2">
 
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
 
                         <li class="nav-item">
                             <a href="/MemberPanel/Index/" class="nav-link">
                                 <i class="nav-icon fas fa-house-user"></i>
                                 <p>
                                     Profilim
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="pages/gallery.html" class="nav-link">
-                                <i class="nav-icon fas fa-bullhorn"></i>
-                                <p>
-                                    Duyurular
                                 </p>
                             </a>
                         </li>
@@ -133,7 +118,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/Messages/NewMessages/" class="nav-link">
+                            <a href="/Messages/NewMessage/" class="nav-link">
                                 <i class="nav-icon far fa-comment"></i>
                                 <p>
                                     Yeni Mesaj
@@ -142,7 +127,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/MemberPanel/MyBook/" class="nav-link">
+                            <a href="/MemberPanel/MyBooks/" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Kitaplarım

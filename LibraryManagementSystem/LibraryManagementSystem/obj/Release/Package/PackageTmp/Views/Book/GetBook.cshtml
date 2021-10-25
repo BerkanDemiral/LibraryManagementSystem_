@@ -1,0 +1,54 @@
+﻿@model LibraryManagementSystem.Models.Entity.books
+@{
+    ViewBag.Title = "GetBook";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Güncelle</h2>
+
+@using (Html.BeginForm("UpdateBook", "Book", FormMethod.Post))
+{
+    <div style="margin-bottom:25px"></div>
+    <div class="form-group">
+        <label>Kitap ID</label>
+        @Html.TextBoxFor(book => book.id, new { @class = "form-control", @readonly = "readonly" })
+
+        <br />
+
+        <label>Kitap Adı</label>
+        @Html.TextBoxFor(book => book.name, new { @class = "form-control" })
+        <br />
+
+        <label>Kategori Adı</label>
+        @Html.DropDownListFor(book => book.categories.id,(List<SelectListItem>)ViewBag.value1,
+              new { @class ="form-control"})
+
+        <br />
+
+        <label>Yazar</label>
+        @Html.DropDownListFor(book=> book.authors.id,(List<SelectListItem>)ViewBag.value2,
+       new { @class="form-control" })
+
+        <br />
+
+        <label>Basım Yılı</label>
+        @Html.TextBoxFor(book => book.publication_year, new { @class = "form-control" })
+
+        <br />
+
+        <label>Yayınevi</label>
+        @Html.TextBoxFor(book => book.publisher, new { @class = "form-control" })
+
+        <br />
+
+        <label>Sayfa Sayısı</label>
+        @Html.TextBoxFor(book => book.number_of_page, new { @class = "form-control" })
+
+
+    </div>
+
+    <div>
+        <button class="btn btn-warning">Güncelle</button>
+    </div>
+}
+

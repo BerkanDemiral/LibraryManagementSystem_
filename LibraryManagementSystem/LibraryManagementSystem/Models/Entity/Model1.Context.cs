@@ -59,6 +59,10 @@ public partial class LIBRARYEntities1 : DbContext
 
     public virtual DbSet<personnels> personnels { get; set; }
 
+    public virtual DbSet<author_stats> author_stats { get; set; }
+
+    public virtual DbSet<category_stats> category_stats { get; set; }
+
 
     public virtual ObjectResult<string> bestBook()
     {
@@ -219,6 +223,20 @@ public partial class LIBRARYEntities1 : DbContext
     {
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("WritedMaxBookAuthor");
+    }
+
+
+    public virtual ObjectResult<bookCountsOfCategories_Result> bookCountsOfCategories()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<bookCountsOfCategories_Result>("bookCountsOfCategories");
+    }
+
+
+    public virtual ObjectResult<booksNumberOfAuthors_Result> booksNumberOfAuthors()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<booksNumberOfAuthors_Result>("booksNumberOfAuthors");
     }
 
 }

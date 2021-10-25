@@ -21,6 +21,14 @@
           <Property Name="content" Type="varchar" MaxLength="200" />
           <Property Name="date" Type="datetime" />
         </EntityType>
+        <EntityType Name="author_stats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="author_name" Type="varchar" MaxLength="50" />
+          <Property Name="count_of_books" Type="int" />
+        </EntityType>
         <EntityType Name="authors">
           <Key>
             <PropertyRef Name="id" />
@@ -62,6 +70,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="situation" Type="bit" />
+        </EntityType>
+        <EntityType Name="category_stats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="50" />
+          <Property Name="numberOfCategory" Type="int" />
         </EntityType>
         <EntityType Name="contact">
           <Key>
@@ -219,6 +235,8 @@
         <Function Name="bestBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="bestMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="bestPerconnel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="bookCountsOfCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="booksNumberOfAuthors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -254,10 +272,12 @@
         <EntityContainer Name="LIBRARYModelStoreContainer">
           <EntitySet Name="about_us" EntityType="Self.about_us" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="announcements" EntityType="Self.announcements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="author_stats" EntityType="Self.author_stats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="books" EntityType="Self.books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cases" EntityType="Self.cases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category_stats" EntityType="Self.category_stats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
@@ -597,6 +617,10 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="WritedMaxBookAuthor" ReturnType="Collection(String)" />
+          <FunctionImport Name="bookCountsOfCategories" ReturnType="Collection(LIBRARYModel.bookCountsOfCategories_Result)" />
+          <FunctionImport Name="booksNumberOfAuthors" ReturnType="Collection(LIBRARYModel.booksNumberOfAuthors_Result)" />
+          <EntitySet Name="author_stats" EntityType="LIBRARYModel.author_stats" />
+          <EntitySet Name="category_stats" EntityType="LIBRARYModel.category_stats" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -609,6 +633,30 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="bookCountsOfCategories_Result">
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Column1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="booksNumberOfAuthors_Result">
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Column2" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="author_stats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="author_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="count_of_books" Type="Int32" />
+        </EntityType>
+        <EntityType Name="category_stats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numberOfCategory" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -782,6 +830,40 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="LIBRARYModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="LIBRARYModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="WritedMaxBookAuthor" FunctionName="LIBRARYModel.Store.WritedMaxBookAuthor" />
+          <FunctionImportMapping FunctionImportName="bookCountsOfCategories" FunctionName="LIBRARYModel.Store.bookCountsOfCategories">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LIBRARYModel.bookCountsOfCategories_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="booksNumberOfAuthors" FunctionName="LIBRARYModel.Store.booksNumberOfAuthors">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LIBRARYModel.booksNumberOfAuthors_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="author_stats">
+            <EntityTypeMapping TypeName="LIBRARYModel.author_stats">
+              <MappingFragment StoreEntitySet="author_stats">
+                <ScalarProperty Name="count_of_books" ColumnName="count_of_books" />
+                <ScalarProperty Name="author_name" ColumnName="author_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category_stats">
+            <EntityTypeMapping TypeName="LIBRARYModel.category_stats">
+              <MappingFragment StoreEntitySet="category_stats">
+                <ScalarProperty Name="numberOfCategory" ColumnName="numberOfCategory" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

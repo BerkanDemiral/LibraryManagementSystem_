@@ -1,0 +1,60 @@
+﻿@model LibraryManagementSystem.Models.Entity.members
+@{
+    ViewBag.Title = "GetMember";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Güncelle</h2>
+
+@using (Html.BeginForm("UpdateMember", "Member", FormMethod.Post))
+{
+    <div style="margin-top:25px">
+        <label>ID</label>
+        @Html.TextBoxFor(member => member.id, new { @class = "form-control" })
+
+        <br />
+
+        <label>Üye Adı</label>
+        @Html.TextBoxFor(member => member.first_name, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Üye Soyadı</label>
+        @Html.TextBoxFor(member => member.last_name, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Email</label>
+        @Html.TextBoxFor(member => member.email, new { @class = "form-control" })
+    </div>
+
+
+    <div style="margin-top:25px">
+        <label>Kullanıcı Adı</label>
+        @Html.TextBoxFor(member => member.user_name, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Password</label>
+        @Html.TextBoxFor(member => member.password, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Fotoğraf</label>
+        @Html.TextBoxFor(member => member.photos, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Telefon Numarası</label>
+        @Html.TextBoxFor(member => member.phone_number, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:25px">
+        <label>Okul</label>
+        @Html.TextBoxFor(member => member.school, new { @class = "form-control" })
+    </div>
+
+    <div>
+        <button class="btn btn-warning">Güncelle</button>
+    </div>
+}
